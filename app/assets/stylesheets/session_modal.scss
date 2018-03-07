@@ -20,6 +20,10 @@
   width: 100vw;
 }
 
+.modal_screen_link {
+  cursor: default;
+}
+
 .modal_content {
   z-index: 2;
 
@@ -104,6 +108,10 @@
   letter-spacing: 0.5px;
   border-style: none;
   cursor: pointer;
+}
+
+#modal_submit:hover {
+  background-color: #5953C4;
 }
 
 .input_group {

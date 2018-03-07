@@ -71,10 +71,10 @@ class SessionForm extends React.Component {
 
     return (
       <div className="session_modal">
-        <div className="modal_screen"></div>
+        <Link class="modal_screen_link" to="/"><div className="modal_screen"></div></Link>
 
         <div className="modal_content">
-          <div className="close-icon">✕</div>
+          <div className="close-icon"><Link to="/">✕</Link></div>
 
           <h1>{ formType }</h1>
           <form onSubmit={ this.handleSubmit }>

@@ -36,7 +36,6 @@ nav li {
   width: 112px;
   height: 22px;
   background-size: contain;
-
 }
 
 .login {
@@ -48,9 +47,4 @@ nav li {
   color: #796eff;
   border-radius: 3px;
   width: 125px;
-
-  transition-property: background-color, color;
-  transition-duration: 0.15s, 0.15s;
-  transition-timing-function: initial, ease-in-out;
-  transition-delay: initial, initial;
 }
