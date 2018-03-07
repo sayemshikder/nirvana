@@ -65,9 +65,15 @@
   border-radius: 3px;
   border: 2px solid rgb(224, 230, 232);
 }
+
 .modal_content input::placeholder {
   color: #B7BFC6;
   letter-spacing: 1px;
+}
+
+.modal_content input:focus {
+  outline: none;
+  border-color: #ABA5FC;
 }
 
 .modal_content form {
