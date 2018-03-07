@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 class SessionForm extends React.Component {
   constructor(props) {
@@ -30,6 +31,7 @@ class SessionForm extends React.Component {
     const errorItems = errors.map((err, i) => (
       <li key={`${err}-${i}`}>{err}</li>
     ));
+
     return (
       <ul>
         { errorItems }
@@ -42,18 +44,34 @@ class SessionForm extends React.Component {
     const { formType } = this.props;
 
     return (
-      <div>
-        <h1>{ formType }</h1>
-        <form>
-          { this.renderErrors() }
-          <label for="email">Email Address</label>
-          <input type="text" onChange={(e) => this.handleChange(e, 'email')} value={email} />
+      <div className="session_modal">
+        <div className="modal_screen"></div>
 
-          <label for="password">Password</label>
-          <input type="password" onChange={(e) => this.handleChange(e, 'password')} value={password} />
+        <div className="modal_content">
+          <div className="close-icon">✕</div>
 
-          <input type="submit" value={formType} />
-        </form>
+          <h1>{ formType }</h1>
+          <form onSubmit={ this.handleSubmit }>
+            { this.renderErrors() }
+
+            <div className="input-group">
+              <label htmlFor="email">Email Address</label>
+              <input id="email" type="text" onChange={(e) => this.handleChange(e, 'email')}
+                value={email} placeholder="name@company.com" />
+            </div>
+
+            <div className="input-group">
+              <label htmlFor="password">Password</label>
+              <input id="password" type="password" onChange={(e) => this.handleChange(e, 'password')}
+                value={password} placeholder="Password"/>
+            </div>
+
+            <input id="modal_submit" type="submit" value={formType} />
+          </form>
+
+          <div className="modal-footer">Don't have an account? <Link className="footer_link" to="/signup">Sign Up</Link></div>
+
+        </div>
       </div>
     );
   }

@@ -1,7 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+import Root from './components/root';
 import { signup, login, logout } from './actions/session_actions';
+// import { signup, login, logout } from './util/session_api_util';
 import configureStore from './store/store';
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -14,5 +16,5 @@ document.addEventListener('DOMContentLoaded', () => {
   window.logout = logout;
 
   const rootEl = document.getElementById('root');
-  ReactDOM.render(<h1>Nirvana.jsx</h1>, rootEl);
+  ReactDOM.render(<Root store={ store } />, rootEl);
 });
