@@ -16,7 +16,7 @@
 
   overflow: auto; /* Enable scroll if needed */
   background-color: rgba(22,29,40,.85);
-  height: 100vw;
+  height: 100%;
   width: 100vw;
 }
 
@@ -106,11 +106,11 @@
   cursor: pointer;
 }
 
-.input-group {
+.input_group {
   margin-bottom: 25px;
 }
 
-.modal-footer {
+.modal_footer {
   padding-top: 32px;
   margin-top: 16px;
   color: #9ca6af;
@@ -119,4 +119,9 @@
 .footer_link {
   color: #9287ff;
   font-weight: 500px;
+  text-decoration: none;
+}
+
+.modal_errors_ul {
+  list-style: none;
 }

@@ -33,12 +33,24 @@ class SessionForm extends React.Component {
     ));
 
     return (
-      <ul>
+      <ul className="modal_errors_ul">
         { errorItems }
       </ul>
     );
   }
 
+  renderModalFooter() {
+    const { formType } = this.props;
+    if (formType === 'Log In') {
+      return (
+        <div className="modal_footer">Don't have an account? <Link className="footer_link" to="/signup">Sign Up</Link></div>
+      )
+    } else {
+      return (
+        <div className="modal_footer">Already have an account? <Link className="footer_link" to="/login">Sign In</Link></div>
+      )
+    }
+  }
   render() {
     const { email, password } = this.state;
     const { formType } = this.props;
@@ -54,13 +66,13 @@ class SessionForm extends React.Component {
           <form onSubmit={ this.handleSubmit }>
             { this.renderErrors() }
 
-            <div className="input-group">
+            <div className="input_group">
               <label htmlFor="email">Email Address</label>
               <input id="email" type="text" onChange={(e) => this.handleChange(e, 'email')}
                 value={email} placeholder="name@company.com" />
             </div>
 
-            <div className="input-group">
+            <div className="input_group">
               <label htmlFor="password">Password</label>
               <input id="password" type="password" onChange={(e) => this.handleChange(e, 'password')}
                 value={password} placeholder="Password"/>
@@ -69,8 +81,7 @@ class SessionForm extends React.Component {
             <input id="modal_submit" type="submit" value={formType} />
           </form>
 
-          <div className="modal-footer">Don't have an account? <Link className="footer_link" to="/signup">Sign Up</Link></div>
-
+          { this.renderModalFooter() }
         </div>
       </div>
     );

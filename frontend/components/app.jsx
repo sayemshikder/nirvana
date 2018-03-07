@@ -9,6 +9,8 @@ import {
 } from 'react-router-dom';
 
 import LoginFormContainer from './session_form/login_form_container';
+import SignupFormContainer from './session_form/signup_form_container';
+
 import Navbar from './home/navbar';
 
 const App = () => (
@@ -16,8 +18,10 @@ const App = () => (
     <Route exact path="/" component={ Navbar } />
     <Route exact path="/login" component={ Navbar } />
     <Route exact path="/signup" component={ Navbar } />
-    
+
     <Route path="/login" component={ LoginFormContainer }/>
+    <Route path="/signup" component={ SignupFormContainer }/>
+
   </div>
 );
 
