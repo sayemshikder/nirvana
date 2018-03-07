@@ -53,6 +53,7 @@ class SessionForm extends React.Component {
       );
     }
   }
+  
   renderModalFooter() {
     const { formType } = this.props;
 
@@ -65,6 +66,7 @@ class SessionForm extends React.Component {
       <div className="modal_footer">Already have an account? <Link className="footer_link" to="/login">Sign In</Link></div>
     );
   }
+
   render() {
     const { email, password } = this.state;
     const { formType } = this.props;
