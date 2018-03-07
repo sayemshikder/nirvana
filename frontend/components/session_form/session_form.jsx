@@ -5,13 +5,13 @@ class SessionForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      name: '',
       email: '',
       password: ''
     };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.renderErrors = this.renderErrors.bind(this);
   }
 
   handleChange(e, field) {
@@ -39,17 +39,31 @@ class SessionForm extends React.Component {
     );
   }
 
+  renderNameField() {
+    const { formType } = this.props;
+    const { name } = this.state;
+
+    if (formType === 'Sign Up') {
+      return (
+        <div className="input_group">
+          <label htmlFor="name">Full Name</label>
+          <input id="name" type="text" onChange={(e) => this.handleChange(e, 'name')}
+            value={name} placeholder="Ola Nordmann" />
+        </div>
+      );
+    }
+  }
   renderModalFooter() {
     const { formType } = this.props;
+
     if (formType === 'Log In') {
       return (
         <div className="modal_footer">Don't have an account? <Link className="footer_link" to="/signup">Sign Up</Link></div>
-      )
-    } else {
-      return (
-        <div className="modal_footer">Already have an account? <Link className="footer_link" to="/login">Sign In</Link></div>
-      )
+      );
     }
+    return (
+      <div className="modal_footer">Already have an account? <Link className="footer_link" to="/login">Sign In</Link></div>
+    );
   }
   render() {
     const { email, password } = this.state;
@@ -66,9 +80,11 @@ class SessionForm extends React.Component {
           <form onSubmit={ this.handleSubmit }>
             { this.renderErrors() }
 
+            { this.renderNameField() }
+
             <div className="input_group">
               <label htmlFor="email">Email Address</label>
-              <input id="email" type="text" onChange={(e) => this.handleChange(e, 'email')}
+              <input id="email" type="email" onChange={(e) => this.handleChange(e, 'email')}
                 value={email} placeholder="name@company.com" />
             </div>
 
