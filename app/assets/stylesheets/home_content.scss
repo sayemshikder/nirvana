@@ -4,6 +4,7 @@
   top: 100px;
   height: 100%;
   width: 100%;
+  font-family: "Helvetica Neue";
 }
 
 .home_masthead {
@@ -17,7 +18,7 @@
   width: 420px;
   font-size: 22px;
   color: rgb(100, 111, 121);
-  letter-spacing: 1px;
+  letter-spacing: 1.3px;
   font-weight: 300;
 }
 
@@ -32,10 +33,9 @@
 }
 
 .home_content #email::placeholder {
-  color: #B7BFC6;
+  color: #B9C1C8;
   letter-spacing: 1px;
   font-family: "Helvetica Neue Thin";
-
 }
 
 .home_content #email:focus {
@@ -51,10 +51,6 @@
   justify-content: space-between;
 }
 
-.home_form_group a {
-}
-
-
 .home_get_started {
   background-color: #796eff;
   color: #fff;
@@ -66,4 +62,8 @@
   height: 50px;
   width: 140px;
   line-height: 50px;
+}
+
+.home_get_started:hover {
+  background-color: #5953C4;
 }

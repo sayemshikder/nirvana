@@ -56,4 +56,22 @@ nav li {
   color: #796eff;
   border-radius: 3px;
   width: 125px;
+  margin-right: 32px;
+}
+
+.get_started:hover {
+  background-color: #796eff;
+  color: #fff;
+}
+
+.demo {
+  border: 2px solid #EB495B;
+  color: #EB495B;
+  border-radius: 3px;
+  width: 125px;
+}
+
+.demo:hover {
+  background-color: #EB495B;
+  color: #fff;
 }

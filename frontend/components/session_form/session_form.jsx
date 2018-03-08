@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Typed from 'typed.js';
 
 class SessionForm extends React.Component {
   constructor(props) {
@@ -19,6 +20,7 @@ class SessionForm extends React.Component {
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.demoLogin = this.demoLogin.bind(this);
   }
 
   componentWillUnmount() {
@@ -33,9 +35,44 @@ class SessionForm extends React.Component {
   }
 
   handleSubmit(e) {
-    e.preventDefault();
+    if (e) {
+      e.preventDefault();
+    }
     const user = Object.assign({}, this.state);
     this.props.processForm(user);
+  }
+
+  demoLogin() {
+    const { formType } = this.props;
+
+    const guest = { email: 'demo@nirvana.xyz', password: 'hunter2' };
+    const emailOptions = {
+      strings: [guest.email],
+      typeSpeed: 5
+    };
+    const passwordOptions = {
+      strings: [guest.password],
+      typeSpeed: 5
+    };
+
+    const emailTyped = () => {
+      new Typed(".modal_email", emailOptions);
+      passwordTyped();
+    };
+    const demoSubmit = () => {
+      this.setState({ email: guest.email, password: guest.password });
+      this.handleSubmit();
+    };
+    const passwordTyped = () => {
+      setTimeout(() => {
+        new Typed("#password", passwordOptions);
+        setTimeout(demoSubmit, 500);
+      }, 1000);
+    };
+
+    if (this.props.location.pathname === '/demo') {
+      setTimeout(emailTyped, 1000);
+    }
   }
 
   renderErrors() {
@@ -75,7 +112,7 @@ class SessionForm extends React.Component {
       );
     }
     return (
-      <div className="modal_footer">Already have an account? <Link className="footer_link" to="/login">Sign In</Link></div>
+      <div className="modal_footer">Already have an account? <Link className="footer_link" to="/login">Log In</Link></div>
     );
   }
 
@@ -98,7 +135,7 @@ class SessionForm extends React.Component {
 
             <div className="input_group">
               <label htmlFor="email">Email Address</label>
-              <input id="email" type="email" onChange={(e) => this.handleChange(e, 'email')}
+              <input id="email" className="modal_email" type="email" onChange={(e) => this.handleChange(e, 'email')}
                 value={email} placeholder="name@company.com" />
             </div>
 
@@ -112,6 +149,7 @@ class SessionForm extends React.Component {
           </form>
 
           { this.renderModalFooter() }
+          { this.demoLogin() }
         </div>
       </div>
     );
