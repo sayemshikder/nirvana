@@ -5,8 +5,8 @@ const navbar = () => {
   return (
     <nav>
       <ul className="nav_ul">
-        <li className="logo"></li>
-        <li className="login"><Link to="/login">Log In</Link></li>
+        <Link to="/" className="logo_link"><li className="logo"></li></Link>
+        <Link to="/login"><li className="login">Log In</li></Link>
         <Link to="/signup"><li className="get_started">Get Started</li></Link>
       </ul>
     </nav>

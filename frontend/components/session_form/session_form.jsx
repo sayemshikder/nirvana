@@ -4,14 +4,26 @@ import { Link } from 'react-router-dom';
 class SessionForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
+
+    let preloadedEmail;
+    if (this.props.location.state) {
+      preloadedEmail = this.props.location.state.email;
+    }
+
+    this.initialFormState = {
       name: '',
-      email: '',
+      email: preloadedEmail || '',
       password: ''
     };
+    this.state = this.initialFormState;
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  componentWillUnmount() {
+    this.props.clearErrors();
+    this.setState(this.initialFormState);
   }
 
   handleChange(e, field) {
@@ -29,7 +41,7 @@ class SessionForm extends React.Component {
   renderErrors() {
     const { errors } = this.props;
     const errorItems = errors.map((err, i) => (
-      <li key={`${err}-${i}`}>{err}</li>
+      <li className="modal_errors_li" key={`${err}-${i}`}>{err}</li>
     ));
 
     return (
@@ -53,7 +65,7 @@ class SessionForm extends React.Component {
       );
     }
   }
-  
+
   renderModalFooter() {
     const { formType } = this.props;
 
@@ -73,7 +85,7 @@ class SessionForm extends React.Component {
 
     return (
       <div className="session_modal">
-        <Link class="modal_screen_link" to="/"><div className="modal_screen"></div></Link>
+        <Link className="modal_screen_link" to="/"><div className="modal_screen"></div></Link>
 
         <div className="modal_content">
           <div className="close-icon"><Link to="/">✕</Link></div>

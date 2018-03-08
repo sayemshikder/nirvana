@@ -11,21 +11,10 @@
  * It is generally better to create a new file per style scope.
  *
  *= require normalize-rails
- *= require_self
+ *= require global_styles
  *= require navbar.scss
  *= require session_modal.scss
+ *= require home_content.scss
  *= require_tree .
+ *= require_self
  */
-
- * {
-   font-family: 'Proxima Nova', sans-serif;
- }
-
-a {
-  text-decoration: none;
-  color: inherit;
-}
-
-ul {
-  list-style: none;
-}

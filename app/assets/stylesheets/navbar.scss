@@ -1,4 +1,6 @@
 .nav_ul {
+  z-index: 1;
+
   padding: 0 16px;
   list-style: none;
 
@@ -28,10 +30,17 @@ nav a {
 
 nav li {
   letter-spacing: 1.3px;
+  font-family: "Proxima Nova";
+}
+
+.logo_link {
+  height: 100%;
+  width: 120px;
+  margin-right: auto;
+
 }
 
 .logo {
-  margin-right: auto;
   background: url(asset-path('nirvana_logo.png')) no-repeat ;
   background-size: contain;
   height: 100%;
