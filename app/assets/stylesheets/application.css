@@ -15,6 +15,7 @@
  *= require navbar.scss
  *= require session_modal.scss
  *= require home_content.scss
+ *= require dashboard.scss
  *= require_tree .
  *= require_self
  */

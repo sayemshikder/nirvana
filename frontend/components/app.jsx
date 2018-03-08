@@ -13,7 +13,7 @@ import LoginFormContainer from './session_form/login_form_container';
 import SignupFormContainer from './session_form/signup_form_container';
 import HomeContent from './home/home_content';
 import HomeNav from './home/navbar';
-import DashNavContainer from './dashboard/nav_container';
+import DashContainer from './dashboard/dash_container';
 
 const App = () => (
   <div>
@@ -28,7 +28,7 @@ const App = () => (
     <AuthRoute path="/demo" component={ LoginFormContainer } />
     <AuthRoute path="/signup" component={ SignupFormContainer } />
 
-    <ProtectedRoute path="/dashboard" component={DashNavContainer} />
+    <ProtectedRoute path="/dashboard" component={DashContainer} />
   </div>
 );
 

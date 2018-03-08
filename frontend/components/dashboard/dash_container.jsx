@@ -1,12 +1,11 @@
 import { connect } from 'react-redux';
 import React from 'react';
-import DashNav from './nav';
+import Dash from './dash';
 import { logout } from '../../actions/session_actions';
 
-const mapStateToProps = ({ errors }) => {
+const mapStateToProps = (state) => {
   return {
-    errors: errors.session,
-    formType: 'Log In'
+    
   };
 };
 
@@ -16,4 +15,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(DashNav);
+export default connect(mapStateToProps, mapDispatchToProps)(Dash);
