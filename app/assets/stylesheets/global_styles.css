@@ -1,6 +1,13 @@
 @font-face {
   font-family: 'Proxima Nova';
-  src: url('Mark Simonson - Proxima Nova Alt Regular-webfont.ttf') format('truetype');
+  src: url('Proxima Nova Alt Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Helvetica Neue';
+  src: url('Helvetica Neue.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }

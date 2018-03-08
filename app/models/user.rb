@@ -6,6 +6,20 @@ class User < ApplicationRecord
   attr_reader :password
   after_initialize :ensure_session_token
 
+  has_many :team_memberships
+
+  has_many :teams,
+    through: :team_memberships
+
+  has_many :led_teams,
+    foreign_key: :leader_id,
+    class_name: "Team"
+
+  has_many :teammates,
+    -> { distinct },
+    through: :teams,
+    source: :members
+
   def self.find_by_credentials(email, password)
     user = User.find_by(email: email)
     return nil unless user

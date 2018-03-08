@@ -43,35 +43,36 @@ class SessionForm extends React.Component {
   }
 
   demoLogin() {
-    const { formType } = this.props;
-
-    const guest = { email: 'demo@nirvana.xyz', password: 'hunter2' };
-    const emailOptions = {
-      strings: [guest.email],
-      typeSpeed: 5
-    };
-    const passwordOptions = {
-      strings: [guest.password],
-      typeSpeed: 5
-    };
-
-    const emailTyped = () => {
-      new Typed(".modal_email", emailOptions);
-      passwordTyped();
-    };
-    const demoSubmit = () => {
-      this.setState({ email: guest.email, password: guest.password });
-      this.handleSubmit();
-    };
-    const passwordTyped = () => {
-      setTimeout(() => {
-        new Typed("#password", passwordOptions);
-        setTimeout(demoSubmit, 500);
-      }, 1000);
-    };
-
     if (this.props.location.pathname === '/demo') {
-      setTimeout(emailTyped, 1000);
+      const guest = {
+        email: 'maximus@nirvana.xyz',
+        password: '$#J2E*&PLGtEXupaI*x##g^GdWiJ*v'
+      };
+
+      const emailOptions = {
+        strings: [guest.email],
+        typeSpeed: 5
+      };
+      const passwordOptions = {
+        strings: [guest.password],
+        typeSpeed: 5
+      };
+
+      const fillForm = () => {
+        new Typed(".modal_email", emailOptions);
+        setTimeout(() => {
+          new Typed("#password", passwordOptions);
+          setTimeout(() => {
+            demoSubmit();
+          }, 300);
+        }, 500);
+      };
+      const demoSubmit = () => {
+        this.setState(guest);
+        this.handleSubmit();
+      };
+
+      setTimeout(fillForm, 500);
     }
   }
 

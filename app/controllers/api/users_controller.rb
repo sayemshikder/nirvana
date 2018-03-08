@@ -1,4 +1,8 @@
 class Api::UsersController < ApplicationController
+  def show
+    # TODO  
+  end
+
   def create
     @user = User.create(user_params)
 

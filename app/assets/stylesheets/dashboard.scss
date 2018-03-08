@@ -11,6 +11,16 @@
   color: #FFF;
 }
 
+.logo_dark {
+  position: relative;
+  top: 9px;
+  left: 10px;
+  background: url(asset-path('nirvana_logo_transparent_blue.png')) no-repeat ;
+  background-size: contain;
+  height: 100%;
+  width: 120px;
+}
+
 .dash-tasks {
   width: 80.9375%;
   height: 100%;
@@ -73,6 +83,9 @@
   background: url(asset-path('search.svg')) no-repeat 10px center;
   background-size: 15px;
   color: rgb(132, 143, 152);
+
+  outline-style:none;
+  box-shadow:none;
 }
 
 .dash-search:focus {

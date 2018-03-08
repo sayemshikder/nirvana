@@ -15,7 +15,9 @@ class Dashboard extends React.Component {
   render() {
     return (
       <div className="dash">
-        <div className="dash-sidebar"></div>
+        <div className="dash-sidebar">
+          <li className="logo_dark"></li>
+        </div>
 
         <div className="dash-tasks">
 
