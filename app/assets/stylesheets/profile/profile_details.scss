@@ -1,0 +1,13 @@
+.profile-card {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+}
+
+.profile-card__top {
+  border-radius: 3px;
+}
+
+.profile-card__top-name {
+  position: relative;
+}

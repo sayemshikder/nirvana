@@ -1,0 +1,27 @@
+.task-index__list-section {
+}
+
+.task-index__list-section-header {
+  height: 25px;
+  font-family: "Segoe UI";
+  font-weight: 700;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.task-index__list {
+  padding: 15px 30px;
+  display: flex;
+  flex-direction: column;
+}
+
+.dropdown_icon {
+  background: url(asset-path('dropdown_arrow.svg')) no-repeat;
+  background-size: 10px;
+  height: 10px;
+  width: 10px;
+  position: relative;
+  top: 1px;
+  margin-right: 3px;
+}

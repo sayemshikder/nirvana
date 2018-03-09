@@ -1,6 +1,8 @@
 import { connect } from 'react-redux';
 import React from 'react';
-import Profile from './profile';
+
+import ProfileIcon from './profile_icon';
+import { showProfileDetailsModal, closeModal } from '../../actions/user_actions';
 
 const mapStateToProps = (state, ownProps) => {
   // let user;
@@ -17,9 +19,10 @@ const mapStateToProps = (state, ownProps) => {
 // TODO: direct viewer to user's task list on click
 const mapDispatchToProps = (dispatch) => {
   return {
-
+    showProfileDetailsModal: (userId) => dispatch(showProfileDetailsModal(userId)),
+    closeModal: () => dispatch(closeModal())
   };
 };
 
 // TODO: might not need msp
-export default connect(mapStateToProps, mapDispatchToProps)(Profile);
+export default connect(mapStateToProps, mapDispatchToProps)(ProfileIcon);

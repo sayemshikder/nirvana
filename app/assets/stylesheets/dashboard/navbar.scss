@@ -40,3 +40,25 @@
   color: #55CAFC;
   cursor: pointer;
 }
+
+.dash-search {
+  border: 1px solid rgb(213, 220, 224);
+  border-radius: 15px;
+
+  width: 200px;
+  height: 25px;
+  line-height: 30px; // match nav height to center placeholder text
+  padding-left: 33px;
+  padding-right: 15px;
+
+  background: url(asset-path('search.svg')) no-repeat 10px center;
+  background-size: 15px;
+  color: rgb(132, 143, 152);
+
+  outline-style:none;
+  box-shadow:none;
+}
+
+.dash-search:focus {
+  color: #000;
+}

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import ProfileContainer from '../user/profile_container';
+import ProfileIconContainer from '../user/profile_icon_container';
 import TaskIndexContainer from '../task/task_index_container';
 
 class Dashboard extends React.Component {
@@ -23,9 +23,9 @@ class Dashboard extends React.Component {
     const avatarUrl = currentUser.avatarUrl;
 
     const profiles = users.map((user) => (
-      <ProfileContainer user={user} key={user.id} />
+      <ProfileIconContainer user={user} key={user.id} />
     ));
-    const ownProfile = <ProfileContainer user={currentUser} />;
+    const ownProfile = <ProfileIconContainer user={currentUser} />;
 
     return (
       <div className="dash">
