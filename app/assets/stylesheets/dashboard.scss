@@ -1,14 +1,21 @@
 .dash {
   display: flex;
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
 }
 
 .dash-sidebar {
   width: 19.0625%;
-  height: 100%;
   background-color: #232C37;
   color: #FFF;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+}
+
+.dash-sidebar__member-icons {
+  display: flex;
+  align-items: center;
 }
 
 .logo_dark {
@@ -17,13 +24,13 @@
   left: 10px;
   background: url(asset-path('nirvana_logo_transparent_blue.png')) no-repeat ;
   background-size: contain;
-  height: 100%;
+  height: 0;
+  padding-top: 23.69%; /* https://stackoverflow.com/a/22211990 */
   width: 120px;
 }
 
 .dash-tasks {
   width: 80.9375%;
-  height: 100%;
   background-color: #F4F7F8;
 }
 
@@ -147,4 +154,8 @@
 .dash-sub-nav__navbar-item--selected {
   color: #151B26;
   border-color: #26ABF2;
+}
+
+.dash-sidebar h3 {
+  color: #FFF;
 }

@@ -23,20 +23,23 @@ demo_user = User.create(
   about_me: "My name is Maximus Decimus Meridius. Commander of the"\
     " Armies of the North. General of the Felix Legions. Loyal servant"\
     " to the true Emperor, Marcus Aurelius.",
-  avatar_url: "https://imgur.com/a/Xb8av"
+  avatar_url: "https://i.imgur.com/R4NaNBC.png"
 )
 team = Team.create(name: 'Armies of the North', leader_id: demo_user.id)
 TeamMembership.create(team_id: team.id, user_id: demo_user.id)
 
 (MAX_USERS - 1).times do
   faker_user = Faker::Omniauth.google
+  email = faker_user[:info][:email]
+
   User.create(
     name: faker_user[:info][:name],
     role: Faker::Lovecraft.tome,
     dept: Faker::Lovecraft.location,
-    email: faker_user[:info][:email],
+    email: email,
     password: faker_user[:credentials][:token],
-    about_me: Faker::Lovecraft.sentence
+    about_me: Faker::Lovecraft.sentence,
+    avatar_url: "http://tinygraphs.com/labs/isogrids/hexa/#{email}?theme=duskfalling&numcolors=4&size=180&fmt=svg"
   )
 end
 

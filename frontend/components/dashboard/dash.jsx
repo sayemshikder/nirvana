@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import ProfileContainer from '../user/profile_container';
 
 class Dashboard extends React.Component {
   constructor(props) {
@@ -17,13 +18,23 @@ class Dashboard extends React.Component {
   }
 
   render() {
-    const avatarUrl = this.props.currentUser.avatarUrl
+    const { currentUser, users } = this.props;
+    const avatarUrl = currentUser.avatarUrl
         || 'http://via.placeholder.com/100/232e9d/232e9d';
+
+    const profiles = users.map((user) => (
+      <ProfileContainer user={user} />
+    ));
 
     return (
       <div className="dash">
         <div className="dash-sidebar">
           <li className="logo_dark"></li>
+
+          <h3>Profile icons go here</h3>
+          <ul className="dash-sidebar__member-icons">
+            {profiles}
+          </ul>
         </div>
 
         <div className="dash-tasks">

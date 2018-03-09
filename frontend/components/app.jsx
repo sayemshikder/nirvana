@@ -15,6 +15,7 @@ import HomeContent from './home/home_content';
 import HomeNav from './home/navbar';
 import DashContainer from './dashboard/dash_container';
 
+// Refactor to use ui-reducer for displaing modals
 const App = () => (
   <div>
     <AuthRoute exact path="/" component={ HomeNav } />

@@ -23,6 +23,16 @@ class SessionForm extends React.Component {
     this.demoLogin = this.demoLogin.bind(this);
   }
 
+  componentDidMount() {
+    const { formType } = this.props;
+
+    if (formType === 'Sign Up') {
+      $('#name').focus();
+    } else {
+      $('.modal_email').focus();
+    }
+  }
+
   componentWillUnmount() {
     this.props.clearErrors();
     this.setState(this.initialFormState);
