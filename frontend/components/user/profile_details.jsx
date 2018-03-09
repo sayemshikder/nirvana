@@ -9,9 +9,11 @@ class ProfileDetails extends React.Component {
     }
     return (
       <div className="profile-card">
-        <div className="profile-card__top">
-          <img src={ user.avatarUrl } className="profile-card__top-avatar"/>
-          <div className="profile-card__top-name">{ user.name }</div>
+        <div className="profile-card__top"
+          style={ { backgroundImage: `url(${user.avatarUrl})` } }>
+          <div className="profile-card__top-name">
+            <span className="profile-card__top-name-text">{user.name}</span>
+          </div>
         </div>
         <div className="profile-card__bottom">
 
