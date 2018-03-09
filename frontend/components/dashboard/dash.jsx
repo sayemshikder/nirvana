@@ -22,9 +22,13 @@ class Dashboard extends React.Component {
     const { currentUser, users } = this.props;
     const avatarUrl = currentUser.avatarUrl;
 
-    const profiles = users.map((user) => (
-      <ProfileIconContainer user={user} key={user.id} />
-    ));
+    const profiles = users.map((user) => {
+      return (
+        <li className="profile" key={user.id} >
+          <ProfileIconContainer user={user} />
+        </li>
+      );
+    });
     const ownProfile = <ProfileIconContainer user={currentUser} />;
 
     return (

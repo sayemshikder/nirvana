@@ -25,8 +25,33 @@
 
 .profile-card__top-name-text {
   font-size: 13px;
-  position: absolute;
-  bottom: 5px;
-  left: 10px;
+  position: relative;
+  top: 45%;
+  left: 8%;
   overflow-wrap: break-word;
+}
+
+.profile-card__bottom {
+  background: #FFF;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+  width: 180px;
+  font-size: 11px;
+  text-align: left;
+  padding: 15px;
+  box-sizing: border-box;
+}
+
+.profile-card__bottom-role {
+  color: #000;
+  margin-bottom: 2px;
+}
+
+.profile-card__bottom-dept {
+  color: #848F99;
+  margin-bottom: 10px;
+}
+
+.profile-card__bottom-about-me {
+  color: #000;
 }

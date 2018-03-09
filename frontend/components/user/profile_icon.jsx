@@ -6,13 +6,13 @@ class Profile extends React.Component {
     const { user, showProfileDetailsModal, closeModal } = this.props;
 
     return (
-      <li className="profile">
+      <div>
         <img onMouseEnter={ () => showProfileDetailsModal(user.id) }
           onMouseLeave={ closeModal }
           className="profile__avatar"
           src={ user.avatarUrl } />
         <ProfileDetailsContainer userId={user.id} />
-      </li>
+      </div>
     );
   }
 }
