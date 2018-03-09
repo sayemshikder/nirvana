@@ -19,12 +19,12 @@ class Dashboard extends React.Component {
 
   render() {
     const { currentUser, users } = this.props;
-    const avatarUrl = currentUser.avatarUrl
-        || 'http://via.placeholder.com/100/232e9d/232e9d';
+    const avatarUrl = currentUser.avatarUrl;
 
     const profiles = users.map((user) => (
-      <ProfileContainer user={user} />
+      <ProfileContainer user={user} key={user.id} />
     ));
+    const ownProfile = <ProfileContainer user={currentUser} />;
 
     return (
       <div className="dash">
@@ -32,7 +32,7 @@ class Dashboard extends React.Component {
           <li className="logo_dark"></li>
 
           <h3>Profile icons go here</h3>
-          <ul className="dash-sidebar__member-icons">
+          <ul className="dash-sidebar__member-avatars">
             {profiles}
           </ul>
         </div>
@@ -51,14 +51,15 @@ class Dashboard extends React.Component {
               </li>
             </div>
 
-            <li className="dash-nav__item">TEAM NAME, USER ICON</li>
+            <li className="dash-nav__item">CURRENT TEAM</li>
+            <ProfileContainer user={currentUser} />
             <li className="dash-nav__item"><button onClick={ this.logout }>Logout</button></li>
           </ul>
 
           <div className="dash-sub-nav">
             <div className="dash-sub-nav__header">
-              <img className="dash-sub-nav__header-avatar" src={avatarUrl} />
-              <h1 className="dash-sub-nav__header-team">My Tasks in TEAM</h1>
+              <img className="dash-sub-nav__header-avatar" src={ currentUser.avatarUrl } />
+              <h1 className="dash-sub-nav__header-team">My Tasks in CURRENT TEAM</h1>
             </div>
 
             <ul className="dash-sub-nav__navbar">

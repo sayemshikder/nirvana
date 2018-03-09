@@ -39,7 +39,6 @@ TeamMembership.create(team_id: team.id, user_id: demo_user.id)
     email: email,
     password: faker_user[:credentials][:token],
     about_me: Faker::Lovecraft.sentence,
-    avatar_url: "http://tinygraphs.com/labs/isogrids/hexa/#{email}?theme=duskfalling&numcolors=4&size=180&fmt=svg"
   )
 end
 

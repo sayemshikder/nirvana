@@ -5,6 +5,7 @@ class User < ApplicationRecord
 
   attr_reader :password
   after_initialize :ensure_session_token
+  before_save :set_empty_avatar_url_to_random_value
 
   has_many :team_memberships
 
@@ -47,5 +48,15 @@ class User < ApplicationRecord
 
   def ensure_session_token
     self.session_token ||= reset_session_token!
+  end
+
+  def set_empty_avatar_url_to_random_value
+    if self.avatar_url.nil? || self.avatar_url.empty?
+      themes = ["sugarsweets", "heatwave", "daisygarden", "seascape",
+                "summerwarmth", "bythepool", "duskfalling", "frogideas",
+                "berrypie"]
+      self.avatar_url = "http://tinygraphs.com/labs/isogrids/hexa/" +
+          "#{self.email}?theme=#{themes.sample}&numcolors=4&size=180&fmt=svg"
+    end
   end
 end
