@@ -8,11 +8,18 @@ class Dashboard extends React.Component {
     this.logout = this.logout.bind(this);
   }
 
+  componentDidMount() {
+    this.props.requestAllTeammates();
+  }
+
   logout() {
     this.props.logout();
   }
 
   render() {
+    const avatarUrl = this.props.currentUser.avatarUrl
+        || 'http://via.placeholder.com/100/232e9d/232e9d';
+
     return (
       <div className="dash">
         <div className="dash-sidebar">
@@ -39,7 +46,7 @@ class Dashboard extends React.Component {
 
           <div className="dash-sub-nav">
             <div className="dash-sub-nav__header">
-              <img className="dash-sub-nav__header-avatar" src="https://s3.amazonaws.com/profile_photos/573513083289341.DzLwhf46a4utFSr839Cm_60x60.png" />
+              <img className="dash-sub-nav__header-avatar" src={avatarUrl} />
               <h1 className="dash-sub-nav__header-team">My Tasks in TEAM</h1>
             </div>
 

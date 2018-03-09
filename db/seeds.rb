@@ -22,7 +22,8 @@ demo_user = User.create(
   password: "$#J2E*&PLGtEXupaI*x##g^GdWiJ*v",
   about_me: "My name is Maximus Decimus Meridius. Commander of the"\
     " Armies of the North. General of the Felix Legions. Loyal servant"\
-    " to the true Emperor, Marcus Aurelius."
+    " to the true Emperor, Marcus Aurelius.",
+  avatar_url: "https://imgur.com/a/Xb8av"
 )
 team = Team.create(name: 'Armies of the North', leader_id: demo_user.id)
 TeamMembership.create(team_id: team.id, user_id: demo_user.id)

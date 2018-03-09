@@ -1,12 +1,16 @@
-export const RECEIVE_ALL_TEAM_MEMBERS = 'RECEIVE_ALL_TEAM_MEMBERS';
+import * as UsersApiUtil from '../util/users_api_util';
 
-export const receiveAllTeamMembers = (teamMembers) => {
+export const RECEIVE_ALL_TEAMMATES = 'RECEIVE_ALL_TEAMMATES';
+
+export const receiveAllTeammates = (teammates) => {
   return {
-    type: RECEIVE_ALL_TEAM_MEMBERS,
-    users: teamMembers
+    type: RECEIVE_ALL_TEAMMATES,
+    teammates
   };
 };
 
-export const requestAllTeamMembers = (ownUserId) => (dispatch) => {
-
+export const requestAllTeammates = () => (dispatch) => {
+  return UsersApiUtil.fetchTeammates().then((teammates) => {
+    dispatch(receiveAllTeammates(teammates));
+  });
 };

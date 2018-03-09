@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
+import usersReducer from './users_reducer';
 
-// export default combineReducers({
-//   teams: teamsReducer,
-//   users: usersReducer
-// });
+export default combineReducers({
+  users: usersReducer
+});

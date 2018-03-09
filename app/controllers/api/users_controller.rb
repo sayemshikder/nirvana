@@ -1,6 +1,14 @@
 class Api::UsersController < ApplicationController
-  def show
-    # TODO  
+  # TODO: Not sure if best practice
+  def index
+    user = current_user
+
+    if user
+      @teammates = user.teammates
+      render "/api/users/index"
+    else
+      render json: ["User does not exist"], status: 422
+    end
   end
 
   def create
@@ -17,6 +25,6 @@ class Api::UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, :email, :password, :avatar_url)
+    params.require(:user).permit(:id, :name, :email, :password, :avatar_url)
   end
 end

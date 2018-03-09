@@ -1,6 +1,6 @@
-export const fetchSpecificUsers = (userIdArray) => {
-  $.ajax({
+export const fetchTeammates = () => {
+  return $.ajax({
     method: 'GET',
-    url: '/api/users'
+    url: '/api/users/'
   });
 };
