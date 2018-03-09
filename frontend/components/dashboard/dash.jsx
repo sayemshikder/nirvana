@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import ProfileContainer from '../user/profile_container';
+import TaskIndexContainer from '../task/task_index_container';
 
 class Dashboard extends React.Component {
   constructor(props) {
@@ -51,9 +52,14 @@ class Dashboard extends React.Component {
               </li>
             </div>
 
-            <li className="dash-nav__item">CURRENT TEAM</li>
-            <ProfileContainer user={currentUser} />
-            <li className="dash-nav__item"><button onClick={ this.logout }>Logout</button></li>
+            <li className="dash-nav__item"><button onClick={ this.logout }>Temp Logout</button></li>
+
+            <li className="dash-nav__settings-dropdown">
+              <div>CURRENT TEAM</div>
+              <a src="#">
+                <img className="dash-nav__avatar" src={ currentUser.avatarUrl } />
+              </a>
+            </li>
           </ul>
 
           <div className="dash-sub-nav">
@@ -69,6 +75,7 @@ class Dashboard extends React.Component {
             </ul>
           </div>
 
+          <TaskIndexContainer />
         </div>
       </div>
     );

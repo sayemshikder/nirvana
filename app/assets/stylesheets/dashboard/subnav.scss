@@ -1,0 +1,55 @@
+.dash-sub-nav {
+  display: flex;
+  align-items: center;
+  align-content: center;
+  text-align: center;
+  flex-direction: column;
+  height: 65px;
+  background-color: #FFF;
+  border-bottom: 1px solid #E0E6E8;
+  /* https://stackoverflow.com/a/6245879 */
+  box-shadow: 0 3px 2px -2px #E0E6E8;
+}
+
+.dash-sub-nav__header {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  line-height: 41px;
+  height: 41px;
+
+  margin: auto;
+}
+
+.dash-sub-nav__header-team {
+  font-size: 24px;
+  font-family: "Segoe UI", Roboto;
+  margin-left: 5px;
+}
+
+.dash-sub-nav__header-avatar {
+  width: 24px;
+  border-radius: 50%;
+}
+
+.dash-sub-nav__navbar {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  line-height: 34px;
+  margin: auto;
+}
+
+.dash-sub-nav__navbar-item {
+  margin: 0 15px;
+  font-size: 13px;
+  color: rgb(132, 143, 152);
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+  height: 27px;
+}
+
+.dash-sub-nav__navbar-item--selected {
+  color: #151B26;
+  border-color: #26ABF2;
+}

@@ -1,0 +1,59 @@
+.dash {
+  display: flex;
+  width: 100vw;
+  min-height: 100vh;
+}
+
+.logo_dark {
+  position: relative;
+  top: 9px;
+  left: 10px;
+  background: url(asset-path('nirvana_logo_transparent_blue.png')) no-repeat ;
+  background-size: contain;
+  height: 0;
+  padding-top: 23.69%; /* https://stackoverflow.com/a/22211990 */
+  width: 120px;
+}
+
+.dash-tasks {
+  width: 80.9375%;
+  background-color: #F4F7F8;
+}
+
+.dash-search {
+  border: 1px solid rgb(213, 220, 224);
+  border-radius: 15px;
+
+  width: 200px;
+  height: 25px;
+  line-height: 30px; // match nav height to center placeholder text
+  padding-left: 33px;
+  padding-right: 15px;
+
+  background: url(asset-path('search.svg')) no-repeat 10px center;
+  background-size: 15px;
+  color: rgb(132, 143, 152);
+
+  outline-style:none;
+  box-shadow:none;
+}
+
+.dash-search:focus {
+  color: #000;
+}
+
+.dash-nav__settings-dropdown {
+  margin: 0 20px;
+  display: flex;
+  align-items: center;
+}
+
+.dash-nav__avatar {
+  height: 30px;
+  border-radius: 50%;
+  margin-left: 10px;
+}
+
+.dash-sidebar h3 {
+  color: #FFF;
+}

@@ -21,6 +21,10 @@ class User < ApplicationRecord
     through: :teams,
     source: :members
 
+  AVATAR_THEMES = ["sugarsweets", "heatwave", "daisygarden", "seascape",
+            "summerwarmth", "bythepool", "duskfalling", "frogideas",
+            "berrypie"]
+
   def self.find_by_credentials(email, password)
     user = User.find_by(email: email)
     return nil unless user
@@ -52,11 +56,8 @@ class User < ApplicationRecord
 
   def set_empty_avatar_url_to_random_value
     if self.avatar_url.nil? || self.avatar_url.empty?
-      themes = ["sugarsweets", "heatwave", "daisygarden", "seascape",
-                "summerwarmth", "bythepool", "duskfalling", "frogideas",
-                "berrypie"]
       self.avatar_url = "http://tinygraphs.com/labs/isogrids/hexa/" +
-          "#{self.email}?theme=#{themes.sample}&numcolors=4&size=180&fmt=svg"
+          "#{self.email}?theme=#{AVATAR_THEMES.sample}&numcolors=4&size=180&fmt=svg"
     end
   end
 end
