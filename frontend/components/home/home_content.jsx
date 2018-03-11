@@ -39,6 +39,11 @@ class HomeContent extends React.Component {
             value={email} placeholder="name@company.com" />
           <input type="submit" value="Get Started" className="home_get_started" />
         </form>
+
+        <div class="ocean">
+          <div class="wave"></div>
+          <div class="wave"></div>
+        </div>
       </div>
     );
   }
