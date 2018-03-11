@@ -41,7 +41,7 @@ class HomeContent extends React.Component {
             <input type="submit" value="Get Started" className="home_get_started" />
           </form>
         </div>
-        
+
         <div className="ocean">
           <div className="wave"></div>
           <div className="wave"></div>

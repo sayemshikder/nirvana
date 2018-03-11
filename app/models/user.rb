@@ -12,6 +12,12 @@ class User < ApplicationRecord
   has_many :teams,
     through: :team_memberships
 
+  has_many :projects,
+    through: :teams
+
+  has_many :tasks,
+    through: :projects
+
   has_many :led_teams,
     foreign_key: :leader_id,
     class_name: "Team"
@@ -22,8 +28,8 @@ class User < ApplicationRecord
     source: :members
 
   AVATAR_THEMES = ["sugarsweets", "heatwave", "daisygarden", "seascape",
-            "summerwarmth", "bythepool", "duskfalling", "frogideas",
-            "berrypie"]
+                   "summerwarmth", "bythepool", "duskfalling", "frogideas",
+                   "berrypie"].freeze
 
   def self.find_by_credentials(email, password)
     user = User.find_by(email: email)

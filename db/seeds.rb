@@ -1,21 +1,18 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
 require 'database_cleaner'
 
 User.destroy_all
 Team.destroy_all
-TeamMembership.destroy_all
 Project.destroy_all
+Task.destroy_all
+
+TeamMembership.destroy_all
 
 DatabaseCleaner.clean_with(:truncation)
 
-MAX_USERS = 5
-MAX_TEAMS = 3
+MAX_USERS = 15
+MAX_TEAMS = 5
+MAX_PROJECTS = 15
+MAX_TASKS = 50
 
 # Demo User
 demo_user = User.create(
@@ -29,7 +26,8 @@ demo_user = User.create(
     " to the true Emperor, Marcus Aurelius.",
   avatar_url: "https://i.imgur.com/R4NaNBC.png"
 )
-team = Team.create(name: 'Armies of the North', leader_id: demo_user.id)
+
+team = Team.create(name: 'Exercitus Romanus', leader_id: demo_user.id)
 TeamMembership.create(team_id: team.id, user_id: demo_user.id)
 
 (MAX_USERS - 1).times do
@@ -46,7 +44,7 @@ TeamMembership.create(team_id: team.id, user_id: demo_user.id)
   )
 end
 
-MAX_TEAMS.times do
+(MAX_TEAMS - 1).times do
   Team.create(name: Faker::Lovecraft.sentence(3, 1), leader_id: rand(1..MAX_USERS))
 end
 
@@ -61,5 +59,25 @@ User.all.each do |user|
         team_id: team_id
       )
     end
+  end
+end
+
+MAX_PROJECTS.times do
+  Project.create(name: Faker::OnePiece.location,
+                 description: Faker::Company.catch_phrase,
+                 team_id: Team.all.sample.id
+                )
+end
+
+tasks_per_project = MAX_TASKS / MAX_PROJECTS
+Project.all.each do |proj|
+  tasks_per_project.times do
+    Task.create!(name: Faker::Company.bs,
+                description: Faker::Hipster.sentence,
+                due_date: Faker::Time.between(DateTime.now, DateTime.now),
+                creator_id: team.members.sample.id,
+                project_id: proj.id,
+                completed: false
+               )
   end
 end
