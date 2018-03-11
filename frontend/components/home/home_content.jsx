@@ -31,18 +31,20 @@ class HomeContent extends React.Component {
 
     return (
       <div className="home_content">
-        <h1 className="home_masthead">Move work forward</h1>
-        <h3 className="home_subhead">Nirvana is the easiest way for teams to track their work—and get results.</h3>
+        <div className="home_squeeze">
+          <h1 className="home_masthead">Move work forward</h1>
+          <h3 className="home_subhead">Nirvana is the easiest way for teams to track their work—and get results.</h3>
 
-        <form onSubmit={this.handleSubmit} className="home_form_group">
-          <input id="email" className="home_email_input" type="email" onChange={this.updateEmail}
-            value={email} placeholder="name@company.com" />
-          <input type="submit" value="Get Started" className="home_get_started" />
-        </form>
-
-        <div class="ocean">
-          <div class="wave"></div>
-          <div class="wave"></div>
+          <form onSubmit={this.handleSubmit} className="home_form_group">
+            <input id="email" className="home_email_input" type="email" onChange={this.updateEmail}
+              value={email} placeholder="name@company.com" />
+            <input type="submit" value="Get Started" className="home_get_started" />
+          </form>
+        </div>
+        
+        <div className="ocean">
+          <div className="wave"></div>
+          <div className="wave"></div>
         </div>
       </div>
     );

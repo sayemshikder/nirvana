@@ -1,9 +1,14 @@
 .home_content {
   position: relative;
-  left: 18%;
-  top: 100px;
-  height: 100%;
+  height: 100vh;
   font-family: "Helvetica Neue Thin";
+  display: flex;
+  flex-direction: column;
+}
+
+.home_squeeze {
+  padding-top: 7%;
+  padding-left: 18%;
 }
 
 .home_masthead {
@@ -75,12 +80,12 @@ body {
 }
 
 .ocean {
-  z-index: -1;
+  z-index: -999;
   width: 100%;
   position:absolute;
-  bottom: -30px;
-  left: 0;
-  background: #015871;
+  bottom: 0;
+  // background: #015871;
+  height: 198px;
 }
 
 .wave {
