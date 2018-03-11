@@ -1,11 +1,10 @@
 class Api::UsersController < ApplicationController
-  # TODO: Not sure if best practice
   def index
-    user = current_user
+    @user = current_user
 
-    if user
-      @teammates = user.teammates
-      render "/api/users/index"
+    if @user
+      @teammates = @user.teammates
+      render "/api/users/index" # TODO: refactor to only return teammates
     else
       render json: ["User does not exist"], status: 422
     end

@@ -5,10 +5,14 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+require 'database_cleaner'
 
 User.destroy_all
 Team.destroy_all
 TeamMembership.destroy_all
+Project.destroy_all
+
+DatabaseCleaner.clean_with(:truncation)
 
 MAX_USERS = 5
 MAX_TEAMS = 3
@@ -16,7 +20,7 @@ MAX_TEAMS = 3
 # Demo User
 demo_user = User.create(
   name: "Maximus Decimus Meridius",
-  role: "General of the Felix Legions",
+  role: "General",
   dept: "Legio IV Flavia Felix",
   email: "maximus@nirvana.xyz",
   password: "$#J2E*&PLGtEXupaI*x##g^GdWiJ*v",
