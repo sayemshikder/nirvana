@@ -36,13 +36,15 @@ class SettingsModal extends React.Component {
         <Modal isOpen={this.state.showModal}
           contentLabel="Settings Modal"
           className="react-modal"
-          overlayClassName="react-modal-overlay">
+          overlayClassName="react-modal-overlay"
+          shouldCloseOnOverlayClick={true}
+          onRequestClose={ this.handleCloseModal }
+        >
 
           <h3>Teams</h3>
           { teams.map((team) => <li>{ team.name }</li>) }
 
           <button onClick={ logout }>Logout</button>
-          <button onClick={this.handleCloseModal}>Close Modal</button>
         </Modal>
       </div>
     );
