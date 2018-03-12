@@ -11,7 +11,7 @@ const mapStateToProps = (state, ownProps) => {
     return {};
   }
   return {
-    user: state.entities.users[selectModalUserId(state)]
+    user: state.entities.users.projectMembers[selectModalUserId(state)]
   };
 };
 

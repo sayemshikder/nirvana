@@ -11,7 +11,8 @@ class Dashboard extends React.Component {
   }
 
   componentDidMount() {
-    this.props.requestAllTeammates();
+    const firstUserProjectId = this.props.currentUser.projectIds[0];
+    this.props.requestProjectMembers(firstUserProjectId);
     this.props.requestAllTeams();
   }
 
@@ -20,18 +21,24 @@ class Dashboard extends React.Component {
   }
 
   render() {
-    const { currentUser, currentTeam, users, teams } = this.props;
+    const { currentUser,
+      currentTeam,
+      projectMembers,
+      teams,
+      requestUser,
+      loggedInUser
+    } = this.props;
 
     const avatarUrl = currentUser.avatarUrl;
 
-    const profiles = users.map((user) => {
+    const profiles = projectMembers.map((user) => {
       return (
         <li className="profile" key={user.id} >
           <ProfileIconContainer user={user} />
         </li>
       );
     });
-    const ownProfile = <ProfileIconContainer user={currentUser} />;
+    const ownProfile = <ProfileIconContainer user={ currentUser } />;
 
     return (
       <div className="dash">
@@ -57,16 +64,19 @@ class Dashboard extends React.Component {
               </li>
             </div>
 
-            <SettingsModal teamName={ currentTeam.name }
-              avatarUrl={ currentUser.avatarUrl }
+            <SettingsModal teamName={ currentTeam ? currentTeam.name : 'Loading...' }
+              avatarUrl={ loggedInUser.avatarUrl }
               logout={ this.logout }
-              teams={ teams} />
+              teams={ teams }
+              currentUserId={ currentUser.id } />
           </ul>
 
           <div className="dash-sub-nav">
             <div className="dash-sub-nav__header">
               <img className="dash-sub-nav__header-avatar" src={ currentUser.avatarUrl } />
-              <h1 className="dash-sub-nav__header-team">My Tasks in { currentTeam.name }</h1>
+              <h1 className="dash-sub-nav__header-team">
+                {currentUser.id === loggedInUser.id ? 'My' : `${currentUser.name}'s`} Tasks in { currentTeam ? currentTeam.name : 'Loading...' }
+              </h1>
             </div>
 
             <ul className="dash-sub-nav__navbar">

@@ -13,10 +13,10 @@ document.addEventListener('DOMContentLoaded', () => {
   // window.logout = logout;
 
   let store;
-  if (window.currentUser) {
-    const preloadedState = { session: { currentUser: window.currentUser } };
+  if (window.loggedInUser) {
+    const preloadedState = { session: { loggedInUser: window.loggedInUser } };
     store = configureStore(preloadedState);
-    delete window.currentUser;
+    delete window.loggedInUser;
   } else {
     store = configureStore();
   }

@@ -10,22 +10,22 @@ class User < ApplicationRecord
   has_many :team_memberships
 
   has_many :teams,
-    through: :team_memberships
+           through: :team_memberships
 
   has_many :projects,
-    through: :teams
+           through: :teams
 
   has_many :tasks,
-    through: :projects
+           through: :projects
 
   has_many :led_teams,
-    foreign_key: :leader_id,
-    class_name: "Team"
+           foreign_key: :leader_id,
+           class_name: "Team"
 
   has_many :teammates,
-    -> { distinct },
-    through: :teams,
-    source: :members
+           -> { distinct },
+           through: :teams,
+           source: :members
 
   AVATAR_THEMES = ["sugarsweets", "heatwave", "daisygarden", "seascape",
                    "summerwarmth", "bythepool", "duskfalling", "frogideas",
@@ -62,7 +62,7 @@ class User < ApplicationRecord
 
   def set_empty_avatar_url_to_random_value
     if self.avatar_url.nil? || self.avatar_url.empty?
-      self.avatar_url = "http://tinygraphs.com/labs/isogrids/hexa/" +
+      self.avatar_url = "http://tinygraphs.com/isogrids/" +
           "#{self.email}?theme=#{AVATAR_THEMES.sample}&numcolors=4&size=180&fmt=svg"
     end
   end

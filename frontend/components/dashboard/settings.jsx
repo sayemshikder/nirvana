@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Modal from 'react-modal';
+import { Link } from 'react-router-dom';
 
 class SettingsModal extends React.Component {
   constructor () {
@@ -22,12 +23,19 @@ class SettingsModal extends React.Component {
   }
 
   render () {
-    const { name, avatarUrl, logout, teams } = this.props;
+    const { name, avatarUrl, logout, teams, currentTeam } = this.props;
+    const teamList = teams.map((team) => {
+      return (
+        <li key={ team.id }>
+          <Link to={`/teams/${team.id}`}>{ team.name }</Link>
+        </li>
+      );
+    });
 
     return (
       <div>
         <li className="dash-nav__settings-dropdown" onClick={this.handleOpenModal}>
-          <div>CURRENT TEAM</div>
+          <div>{currentTeam}</div>
           <a src="#">
             <img className="dash-nav__avatar" src={ avatarUrl } />
           </a>
@@ -42,7 +50,7 @@ class SettingsModal extends React.Component {
         >
 
           <h3>Teams</h3>
-          { teams.map((team) => <li>{ team.name }</li>) }
+          { teamList }
 
           <button onClick={ logout }>Logout</button>
         </Modal>
