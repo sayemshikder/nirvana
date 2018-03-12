@@ -13,7 +13,7 @@ const usersReducer = (oldState={}, action) => {
       return merge({}, oldState, { currentUser: action.user} );
     case RECEIVE_LOGGED_IN_USER:
       // TODO: refactor
-      return merge({}, oldState, { currentUserId: action.loggedInUser.id });
+      return merge({}, oldState, { currentUser: action.loggedInUser });
     default:
       return oldState;
   }
