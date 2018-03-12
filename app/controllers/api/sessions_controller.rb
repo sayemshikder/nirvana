@@ -7,6 +7,10 @@ class Api::SessionsController < ApplicationController
 
     if @user
       login(@user)
+
+      @team_ids = if @user.teams then @user.teams.pluck(:id) else [] end
+      @project_ids = if @user.projects then @user.projects.pluck(:id) else [] end
+
       render "api/users/show"
     else
       render json: ["Incorrect email or password"], status: 401

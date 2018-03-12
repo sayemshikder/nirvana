@@ -1,6 +1,6 @@
 import { merge } from 'lodash';
 
-import { RECEIVE_ALL_TEAMMATES, CLEAR_USERS } from '../actions/user_actions';
+import { RECEIVE_ALL_TEAMMATES } from '../actions/user_actions';
 
 const usersReducer = (oldState=[], action) => {
   Object.freeze(oldState);

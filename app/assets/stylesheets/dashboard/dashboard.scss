@@ -29,6 +29,10 @@
   align-items: center;
 }
 
+.dash-nav__settings-dropdown:hover {
+  cursor: pointer;
+}
+
 .dash-nav__avatar {
   height: 30px;
   border-radius: 50%;

@@ -3,19 +3,25 @@ import React from 'react';
 import Dash from './dash';
 import { logout } from '../../actions/session_actions';
 import { requestAllTeammates } from '../../actions/user_actions';
-import { selectAllUsers } from '../../reducers/selectors';
+import { requestAllTeams } from '../../actions/team_actions';
+import { selectAllUsers, selectAllTeams } from '../../reducers/selectors';
 
 const mapStateToProps = (state) => {
+  const teams = selectAllTeams(state);
+  
   return {
     currentUser: state.session.currentUser,
-    users: selectAllUsers(state)
+    users: selectAllUsers(state),
+    teams,
+    currentTeam: teams[0] || { name: 'Loading' },
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
     logout: () => dispatch(logout()),
-    requestAllTeammates: () => dispatch(requestAllTeammates())
+    requestAllTeammates: () => dispatch(requestAllTeammates()),
+    requestAllTeams: () => dispatch(requestAllTeams())
   };
 };
 

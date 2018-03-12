@@ -9,9 +9,13 @@
 
 .dash-sidebar__member-avatars {
   display: flex;
-  align-items: center;
+  width: 100%;
+  flex-wrap: wrap;
+  margin-left: 8px;
 }
 
 .dash-sidebar__member-avatars .profile__avatar {
   margin-left: 7px;
+  width: 30px;
+  height: 30px;
 }

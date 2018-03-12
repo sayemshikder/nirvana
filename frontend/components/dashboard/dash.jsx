@@ -2,16 +2,17 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import ProfileIconContainer from '../user/profile_icon_container';
 import TaskIndexContainer from '../task/task_index_container';
+import SettingsModal from './settings';
 
 class Dashboard extends React.Component {
   constructor(props) {
     super(props);
-
     this.logout = this.logout.bind(this);
   }
 
   componentDidMount() {
     this.props.requestAllTeammates();
+    this.props.requestAllTeams();
   }
 
   logout() {
@@ -19,7 +20,8 @@ class Dashboard extends React.Component {
   }
 
   render() {
-    const { currentUser, users } = this.props;
+    const { currentUser, currentTeam, users, teams } = this.props;
+
     const avatarUrl = currentUser.avatarUrl;
 
     const profiles = users.map((user) => {
@@ -36,7 +38,6 @@ class Dashboard extends React.Component {
         <div className="dash-sidebar">
           <li className="logo_dark"></li>
 
-          <h3>Profile icons go here</h3>
           <ul className="dash-sidebar__member-avatars">
             {profiles}
           </ul>
@@ -56,20 +57,16 @@ class Dashboard extends React.Component {
               </li>
             </div>
 
-            <li className="dash-nav__item"><button onClick={ this.logout }>Temp Logout</button></li>
-
-            <li className="dash-nav__settings-dropdown">
-              <div>CURRENT TEAM</div>
-              <a src="#">
-                <img className="dash-nav__avatar" src={ currentUser.avatarUrl } />
-              </a>
-            </li>
+            <SettingsModal teamName={ currentTeam.name }
+              avatarUrl={ currentUser.avatarUrl }
+              logout={ this.logout }
+              teams={ teams} />
           </ul>
 
           <div className="dash-sub-nav">
             <div className="dash-sub-nav__header">
               <img className="dash-sub-nav__header-avatar" src={ currentUser.avatarUrl } />
-              <h1 className="dash-sub-nav__header-team">My Tasks in CURRENT TEAM</h1>
+              <h1 className="dash-sub-nav__header-team">My Tasks in { currentTeam.name }</h1>
             </div>
 
             <ul className="dash-sub-nav__navbar">

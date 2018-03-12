@@ -1,6 +1,7 @@
 import * as UsersApiUtil from '../util/users_api_util';
 
 export const RECEIVE_ALL_TEAMMATES = 'RECEIVE_ALL_TEAMMATES';
+
 export const OPEN_PROFILE_DETAILS_MODAL = 'OPEN_PROFILE_DETAILS_MODAL';
 export const CLOSE_MODAL = 'CLOSE_MODAL';
 

@@ -44,11 +44,23 @@ TeamMembership.create(team_id: team.id, user_id: demo_user.id)
   )
 end
 
-(MAX_TEAMS - 1).times do
-  Team.create(name: Faker::Lovecraft.sentence(3, 1), leader_id: rand(1..MAX_USERS))
+(MAX_TEAMS - 1).times do |n|
+  Team.create(
+    name: "#{n + 2}: #{Faker::Pokemon.move}",
+    leader_id: rand(1..MAX_USERS))
 end
 
+TeamMembership.create(team_id: 2, user_id: demo_user.id)
+TeamMembership.create(team_id: 3, user_id: demo_user.id)
+
 User.all.each do |user|
+  # if user.id != 1
+  #   TeamMembership.create(
+  #     user_id: user.id,
+  #     team_id: Team.all.sample.id
+  #   )
+  # end
+
   if user.id != 1
     # Add user to random number of teams
     random_team_ids = Array.new(rand(1..MAX_TEAMS)) { rand(1..MAX_TEAMS) }
@@ -73,11 +85,11 @@ tasks_per_project = MAX_TASKS / MAX_PROJECTS
 Project.all.each do |proj|
   tasks_per_project.times do
     Task.create!(name: Faker::Company.bs,
-                description: Faker::Hipster.sentence,
-                due_date: Faker::Time.between(DateTime.now, DateTime.now),
-                creator_id: team.members.sample.id,
-                project_id: proj.id,
-                completed: false
-               )
+                 description: Faker::Hipster.sentence,
+                 due_date: Faker::Time.between(DateTime.now, DateTime.now),
+                 creator_id: team.members.sample.id,
+                 project_id: proj.id,
+                 completed: false
+                )
   end
 end
