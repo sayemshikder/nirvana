@@ -5,14 +5,19 @@ class TaskIndexItem extends React.Component {
   render() {
     const { task } = this.props;
 
+    const fullDate = new Date(task.dueDate);
+    const month = fullDate.toString().split(' ')[1];
+    const date = fullDate.getDate();
+    
+    let monthDate = `${ month } ${ date }`;
+    if (fullDate.getYear() !== new Date().getYear()) {
+      monthDate += `, ${ fullDate.getFullYear() }`;
+    }
+
     return (
       <li>
-        <p>Assignee ID: { task.assigneeId }</p>
-        <p>Due Date: { task.dueDate }</p>
-        <p>Project ID: { task.projectId }</p>
         <p>Name: { task.name }</p>
-        <p>Description: { task.description }</p>
-        <p>Creator ID: { task.creatorId }</p>
+        <p>Due Date: { monthDate }</p>
         <hr />
       </li>
     );

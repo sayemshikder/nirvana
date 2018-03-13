@@ -51,7 +51,7 @@ class Dashboard extends React.Component {
         </li>
       );
     });
-    
+
     const ownProfile = <ProfileIconContainer user={ currentUser } />;
 
     return (
@@ -110,7 +110,9 @@ class Dashboard extends React.Component {
             </ul>
           </div>
 
-          <TaskIndexContainer />
+          <div className="dash-task-content">
+            <TaskIndexContainer />
+          </div>
         </div>
       </div>
     );

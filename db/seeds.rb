@@ -1,4 +1,5 @@
 require 'database_cleaner'
+require 'date'
 
 User.destroy_all
 Team.destroy_all
@@ -84,9 +85,11 @@ end
 tasks_per_project = MAX_TASKS / MAX_PROJECTS
 Project.all.each do |proj|
   tasks_per_project.times do
+    now = Date.today
+
     Task.create!(name: Faker::Company.bs,
                  description: Faker::Hipster.sentence,
-                 due_date: Faker::Time.between(DateTime.now, DateTime.now),
+                 due_date: Faker::Time.between(Date.new(now.year, 1, 1), Date.new(now.year + 1, 12, 31)),
                  creator_id: User.all.sample.id,
                  assignee_id: User.all.sample.id,
                  project_id: proj.id,
