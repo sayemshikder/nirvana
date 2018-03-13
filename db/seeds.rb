@@ -9,10 +9,10 @@ TeamMembership.destroy_all
 
 DatabaseCleaner.clean_with(:truncation)
 
-MAX_USERS = 15
-MAX_TEAMS = 5
+MAX_USERS = 9
+MAX_TEAMS = 3
 MAX_PROJECTS = 15
-MAX_TASKS = 50
+MAX_TASKS = 45
 
 # Demo User
 demo_user = User.create(
@@ -46,7 +46,7 @@ end
 
 (MAX_TEAMS - 1).times do |n|
   Team.create(
-    name: "#{n + 2}: #{Faker::Pokemon.move}",
+    name: Faker::Pokemon.move,
     leader_id: rand(1..MAX_USERS))
 end
 
@@ -87,7 +87,8 @@ Project.all.each do |proj|
     Task.create!(name: Faker::Company.bs,
                  description: Faker::Hipster.sentence,
                  due_date: Faker::Time.between(DateTime.now, DateTime.now),
-                 creator_id: team.members.sample.id,
+                 creator_id: User.all.sample.id,
+                 assignee_id: User.all.sample.id,
                  project_id: proj.id,
                  completed: false
                 )

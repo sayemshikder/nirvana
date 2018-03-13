@@ -15,8 +15,13 @@ class User < ApplicationRecord
   has_many :projects,
            through: :teams
 
-  has_many :tasks,
-           through: :projects
+  has_many :assigned_tasks,
+           class_name: "Task",
+           foreign_key: :assignee_id # TODO: migrate assignee to assignee_id
+
+  has_many :created_tasks,
+           class_name: "Task",
+           foreign_key: :creator_id
 
   has_many :led_teams,
            foreign_key: :leader_id,

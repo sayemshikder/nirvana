@@ -2,7 +2,7 @@ import { merge } from 'lodash';
 
 import { RECEIVE_ALL_TEAMS, RECEIVE_TEAM } from '../actions/team_actions';
 
-const teamsReducer = (oldState=[], action) => {
+const teamsReducer = (oldState={}, action) => {
   Object.freeze(oldState);
 
   switch (action.type) {

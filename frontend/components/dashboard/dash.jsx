@@ -21,7 +21,9 @@ class Dashboard extends React.Component {
   }
 
   render() {
-    const { currentUser,
+    // TODO: refactor this using SettingsContainer
+    const {
+      currentUser,
       currentTeam,
       teams,
       teamMembers,
@@ -46,7 +48,6 @@ class Dashboard extends React.Component {
       <div className="dash">
         <div className="dash-sidebar">
           <li className="logo_dark"></li>
-
           <ul className="dash-sidebar__member-avatars">
             {profiles}
           </ul>
@@ -66,7 +67,8 @@ class Dashboard extends React.Component {
               </li>
             </div>
 
-            <SettingsModal teamName={ currentTeam ? currentTeam.name : 'Loading...' }
+            <SettingsModal
+              teamName={ currentTeam ? currentTeam.name : 'Loading...' }
               avatarUrl={ loggedInUser.avatarUrl }
               logout={ this.logout }
               teams={ teams }
