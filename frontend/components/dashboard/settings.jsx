@@ -12,22 +12,28 @@ class SettingsModal extends React.Component {
 
     this.handleOpenModal = this.handleOpenModal.bind(this);
     this.handleCloseModal = this.handleCloseModal.bind(this);
+    this.updateTeamMembers = this.updateTeamMembers.bind(this);
   }
 
-  handleOpenModal () {
+  handleOpenModal() {
     this.setState({ showModal: true });
   }
 
-  handleCloseModal () {
+  handleCloseModal() {
     this.setState({ showModal: false });
+  }
+
+  updateTeamMembers(teamId) {
+    this.props.requestTeam(teamId);
+    this.props.requestTeamMembers(teamId);
   }
 
   render () {
     const { name, avatarUrl, logout, teams, currentTeam } = this.props;
     const teamList = teams.map((team) => {
       return (
-        <li key={ team.id }>
-          <Link to={`/teams/${team.id}`}>{ team.name }</Link>
+        <li key={ team.id } onClick={ () => this.updateTeamMembers(team.id) }>
+          { team.name }
         </li>
       );
     });
@@ -35,7 +41,7 @@ class SettingsModal extends React.Component {
     return (
       <div>
         <li className="dash-nav__settings-dropdown" onClick={this.handleOpenModal}>
-          <div>{currentTeam}</div>
+          <div>{ currentTeam ? currentTeam.name : 'Loading...' }</div>
           <a src="#">
             <img className="dash-nav__avatar" src={ avatarUrl } />
           </a>

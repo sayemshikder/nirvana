@@ -10,8 +10,9 @@ const mapStateToProps = (state, ownProps) => {
       || (selectModalUserId(state) !== ownProps.userId)) {
     return {};
   }
+  
   return {
-    user: state.entities.users.projectMembers[selectModalUserId(state)]
+    user: state.entities.users.teamMembers[selectModalUserId(state)]
   };
 };
 

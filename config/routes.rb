@@ -2,6 +2,11 @@ Rails.application.routes.draw do
   namespace :api, defaults: { format: :json } do
     resources :users, only: %i[index show create]
     resources :teams, only: %i[index]
+
+    resources :teams, only: %i[show] do
+      resources :users, only: %i[index]
+    end
+
     resources :projects, only: %i[show]
     resource :session, only: %i[create destroy]
   end

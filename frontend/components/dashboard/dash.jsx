@@ -11,8 +11,7 @@ class Dashboard extends React.Component {
   }
 
   componentDidMount() {
-    const firstUserProjectId = this.props.currentUser.projectIds[0];
-    this.props.requestProjectMembers(firstUserProjectId);
+    this.props.requestTeamMembers(this.props.currentUser.teamIds[0]);
     this.props.requestAllTeams();
   }
 
@@ -23,15 +22,17 @@ class Dashboard extends React.Component {
   render() {
     const { currentUser,
       currentTeam,
-      projectMembers,
       teams,
+      teamMembers,
       requestUser,
-      loggedInUser
+      loggedInUser,
+      requestTeam,
+      requestTeamMembers
     } = this.props;
 
     const avatarUrl = currentUser.avatarUrl;
 
-    const profiles = projectMembers.map((user) => {
+    const profiles = teamMembers.map((user) => {
       return (
         <li className="profile" key={user.id} >
           <ProfileIconContainer user={user} />
@@ -68,7 +69,10 @@ class Dashboard extends React.Component {
               avatarUrl={ loggedInUser.avatarUrl }
               logout={ this.logout }
               teams={ teams }
-              currentUserId={ currentUser.id } />
+              currentUserId={ currentUser.id }
+              currentTeam={ currentTeam }
+              requestTeam={ requestTeam }
+              requestTeamMembers={ requestTeamMembers }/>
           </ul>
 
           <div className="dash-sub-nav">

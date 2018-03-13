@@ -1,12 +1,11 @@
 class Api::UsersController < ApplicationController
   def index
-    @user = current_user
-
-    if @user
-      @teammates = @user.teammates
-      render "/api/users/index" # TODO: refactor to only return teammates
+    team = Team.find(params[:team_id])
+    if team
+      @team_members = team.members
+      render "/api/users/index"
     else
-      render json: ["User does not exist"], status: 422
+      render json: ["Team does not exist"], status: 422
     end
   end
 

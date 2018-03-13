@@ -3,6 +3,11 @@ class Api::TeamsController < ApplicationController
     @teams = current_user.teams
   end
 
+  def show
+    @team = Team.find(params[:id])
+    render "/api/teams/show"
+  end
+
   private
 
   def team_params

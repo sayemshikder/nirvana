@@ -1,17 +1,17 @@
 import * as UsersApiUtil from '../util/users_api_util';
 import * as ProjectsApiUtil from '../util/projects_api_util';
 
-export const RECEIVE_ALL_TEAMMATES = 'RECEIVE_ALL_TEAMMATES';
+export const RECEIVE_TEAM_MEMBERS = 'RECEIVE_TEAM_MEMBERS';
 export const RECEIVE_USER = 'RECEIVE_USER';
 export const RECEIVE_PROJECT_MEMBERS = 'RECEIVE_PROJECT_MEMBERS';
 
 export const OPEN_PROFILE_DETAILS_MODAL = 'OPEN_PROFILE_DETAILS_MODAL';
 export const CLOSE_MODAL = 'CLOSE_MODAL';
 
-export const receiveAllTeammates = (teammates) => {
+export const receiveTeamMembers = (teamMembers) => {
   return {
-    type: RECEIVE_ALL_TEAMMATES,
-    teammates
+    type: RECEIVE_TEAM_MEMBERS,
+    teamMembers
   };
 };
 
@@ -42,9 +42,9 @@ export const closeModal = () => {
   };
 };
 
-export const requestAllTeammates = () => (dispatch) => {
-  return UsersApiUtil.fetchTeammates().then((teammates) => {
-    dispatch(receiveAllTeammates(teammates));
+export const requestTeamMembers = (teamId) => (dispatch) => {
+  return UsersApiUtil.fetchTeamMembers(teamId).then((teammates) => {
+    dispatch(receiveTeamMembers(teammates));
   });
 };
 
