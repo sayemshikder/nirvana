@@ -8,12 +8,12 @@ class TaskIndex extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log('received props -------------');
-
     if (this.props.currentUser !== nextProps.currentUser) {
-      console.log('user changed -------------');
       this.props.requestTasksByUserId(nextProps.currentUser.id);
     }
+    // else if (this.props.currentProject !== nextProps.currentProject) {
+    //
+    // }
   }
 
   render () {

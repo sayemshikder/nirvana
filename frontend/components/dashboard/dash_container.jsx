@@ -2,18 +2,29 @@ import { connect } from 'react-redux';
 import React from 'react';
 import Dash from './dash';
 import { logout } from '../../actions/session_actions';
-import { requestProjectMembers, requestTeamMembers, requestUser } from '../../actions/user_actions';
-import { requestAllTeams, requestTeam } from '../../actions/team_actions';
-import { selectProjectMembers, selectAllTeams, selectTeamMembers } from '../../reducers/selectors';
+import { requestTeamMembers, requestUser } from '../../actions/user_actions';
+import { requestProjectsByTeamId } from '../../actions/project_actions';
+import { requestTeam, requestAllTeams} from '../../actions/team_actions';
+import { requestTasksByUserId } from '../../actions/task_actions';
+import { selectProjectMembers,
+  selectAllTeams,
+  selectTeamMembers,
+  selectCurrentTeam,
+  selectAllProjects
+} from '../../reducers/selectors';
 
 // TODO: remove unused imports
+
 const mapStateToProps = (state) => {
   const teams = selectAllTeams(state);
+  const projects = selectAllProjects(state);
+  const currentUser = state.entities.users.currentUser || state.session.loggedInUser;
 
   return {
     teams,
-    currentUser: state.entities.users.currentUser || state.session.loggedInUser,
-    currentTeam: state.entities.teams.currentTeam || teams[0],
+    projects,
+    currentUser,
+    currentTeam: selectCurrentTeam(state) || teams[0],
     loggedInUser: state.session.loggedInUser,
     projectMembers: selectProjectMembers(state),
     teamMembers: selectTeamMembers(state)
@@ -23,11 +34,12 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     logout: () => dispatch(logout()),
-    requestProjectMembers: (projectId) => dispatch(requestProjectMembers(projectId)),
-    requestAllTeams: () => dispatch(requestAllTeams()),
     requestTeamMembers: (teamId) => dispatch(requestTeamMembers(teamId)),
     requestTeam: (teamId) => dispatch(requestTeam(teamId)),
     requestUser: (userId) => dispatch(requestUser(userId)),
+    requestTasksByUserId: (userId) => dispatch(requestTasksByUserId(userId)),
+    requestAllTeams: () => dispatch(requestAllTeams()),
+    requestProjectsByTeamId: (teamId) => dispatch(requestProjectsByTeamId(teamId)),
   };
 };
 

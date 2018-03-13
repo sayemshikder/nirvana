@@ -7,9 +7,12 @@ class TaskIndexItem extends React.Component {
 
     return (
       <li>
-        <p>{ task.name }</p>
-        <p>{ task.description }</p>
-        <p>{ task.dueDate }</p>
+        <p>Assignee ID: { task.assigneeId }</p>
+        <p>Due Date: { task.dueDate }</p>
+        <p>Project ID: { task.projectId }</p>
+        <p>Name: { task.name }</p>
+        <p>Description: { task.description }</p>
+        <p>Creator ID: { task.creatorId }</p>
         <hr />
       </li>
     );

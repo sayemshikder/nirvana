@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Modal from 'react-modal';
-import { Link } from 'react-router-dom';
 
 class SettingsModal extends React.Component {
   constructor () {
@@ -12,7 +11,7 @@ class SettingsModal extends React.Component {
 
     this.handleOpenModal = this.handleOpenModal.bind(this);
     this.handleCloseModal = this.handleCloseModal.bind(this);
-    this.updateTeamMembers = this.updateTeamMembers.bind(this);
+    this.handleTeamClick = this.handleTeamClick.bind(this);
   }
 
   handleOpenModal() {
@@ -23,16 +22,21 @@ class SettingsModal extends React.Component {
     this.setState({ showModal: false });
   }
 
-  updateTeamMembers(teamId) {
-    this.props.requestTeam(teamId);
+  handleTeamClick(teamId) {
+    this.props.requestAllTeams().then(() => {
+      this.props.requestTeam(teamId);
+      this.props.requestProjectsByTeamId(teamId);
+    });
     this.props.requestTeamMembers(teamId);
+    this.props.requestUser(this.props.currentUser.id);
+    this.props.requestTasksByUserId(this.props.currentUser.id);
   }
 
   render () {
     const { name, avatarUrl, logout, teams, currentTeam } = this.props;
     const teamList = teams.map((team) => {
       return (
-        <li key={ team.id } onClick={ () => this.updateTeamMembers(team.id) }>
+        <li key={ team.id } onClick={ () => this.handleTeamClick(team.id) }>
           { team.name }
         </li>
       );

@@ -20,11 +20,3 @@ class Api::TasksController < ApplicationController
                                  :assignee, :completed)
   end
 end
-
-
-#t.string "name"
-# t.string "description"
-# t.datetime "due_date"
-# t.integer "creator_id", null: false
-# t.integer "assignee"
-# t.boolean "completed", default: false, null: false

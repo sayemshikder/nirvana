@@ -7,10 +7,10 @@ const teamsReducer = (oldState={}, action) => {
 
   switch (action.type) {
     case RECEIVE_ALL_TEAMS:
-      return merge({}, oldState, {
+      return {
         ownTeams: action.teams,
         currentTeam: action.teams[Object.keys(action.teams)[0]]
-      });
+      };
     case RECEIVE_TEAM:
       return merge({}, oldState, { currentTeam: action.team });
     default:

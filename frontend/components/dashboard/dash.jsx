@@ -2,7 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import ProfileIconContainer from '../user/profile_icon_container';
 import TaskIndexContainer from '../task/task_index_container';
-import SettingsModal from './settings';
+import SettingsModal from './settings_container';
+import ProjectListContainer from './../project/project_list_container.js';
 
 class Dashboard extends React.Component {
   constructor(props) {
@@ -11,9 +12,13 @@ class Dashboard extends React.Component {
   }
 
   componentDidMount() {
+    this.props.requestAllTeams().then(() => {
+      const curTeamId = this.props.currentTeam.id;
+      this.props.requestTeam(curTeamId);
+      this.props.requestProjectsByTeamId(curTeamId);
+    });
     this.props.requestTeamMembers(this.props.currentUser.teamIds[0]);
     this.props.requestUser(this.props.currentUser.id);
-    this.props.requestAllTeams();
   }
 
   logout() {
@@ -21,7 +26,7 @@ class Dashboard extends React.Component {
   }
 
   render() {
-    // TODO: refactor this using SettingsContainer
+    // TODO: refactor this into SettingsContainer
     const {
       currentUser,
       currentTeam,
@@ -30,7 +35,11 @@ class Dashboard extends React.Component {
       requestUser,
       loggedInUser,
       requestTeam,
-      requestTeamMembers
+      requestTeamMembers,
+      requestTasksByUserId,
+      projects,
+      requestAllTeams,
+      requestProjectsByTeamId
     } = this.props;
 
     const avatarUrl = currentUser.avatarUrl;
@@ -42,6 +51,7 @@ class Dashboard extends React.Component {
         </li>
       );
     });
+    
     const ownProfile = <ProfileIconContainer user={ currentUser } />;
 
     return (
@@ -51,6 +61,8 @@ class Dashboard extends React.Component {
           <ul className="dash-sidebar__member-avatars">
             {profiles}
           </ul>
+
+          <ProjectListContainer projects={projects} />
         </div>
 
         <div className="dash-tasks">
@@ -75,7 +87,12 @@ class Dashboard extends React.Component {
               currentUserId={ currentUser.id }
               currentTeam={ currentTeam }
               requestTeam={ requestTeam }
-              requestTeamMembers={ requestTeamMembers }/>
+              requestTeamMembers={ requestTeamMembers }
+              requestAllTeams={ requestAllTeams }
+              requestUser={ requestUser }
+              requestTasksByUserId={ requestTasksByUserId }
+              requestProjectsByTeamId={ requestProjectsByTeamId }
+            />
           </ul>
 
           <div className="dash-sub-nav">

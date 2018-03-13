@@ -6,16 +6,18 @@ Rails.application.routes.draw do
       resources :tasks, only: %i[index]
     end
 
-    resources :teams, only: %i[index]
-
-    resources :teams, only: %i[show] do
+    resources :teams, only: %i[index show] do
       resources :users, only: %i[index]
     end
 
     resources :projects, only: %i[show] do
       resources :tasks, only: %i[index]
     end
-    
+
+    resources :teams, only: %i[show] do
+      resources :projects, only: %i[index]
+    end
+
     resource :session, only: %i[create destroy]
   end
 
