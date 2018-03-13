@@ -16,7 +16,7 @@ export const selectTeamMembers = (state) => {
   return values(state.entities.users.teamMembers);
 };
 
-export const selectTasks = (state) => {
+export const selectAllTasks = (state) => {
   return values(state.entities.tasks.tasks);
 };
 

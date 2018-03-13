@@ -20,6 +20,12 @@ class TaskIndex extends React.Component {
     const { tasks } = this.props;
     const taskItems = tasks.map((task) => <TaskIndexItem task={ task } key={ task.id }/>);
 
+    // goes after task-index__list-section
+    // <div className="task-index__list-section-header">
+    //   <i className="dropdown_icon"></i>
+    //   <span>New Tasks</span>
+    // </div>
+    
     return (
       <div className="task-index">
         <div className="task-index__header">
@@ -28,10 +34,6 @@ class TaskIndex extends React.Component {
 
         <div className="task-index__list">
           <div className="task-index__list-section">
-            <div className="task-index__list-section-header">
-              <i className="dropdown_icon"></i>
-              <span>New Tasks</span>
-            </div>
 
             <ul>
               { taskItems }

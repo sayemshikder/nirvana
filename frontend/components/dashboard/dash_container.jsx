@@ -10,7 +10,8 @@ import { selectProjectMembers,
   selectAllTeams,
   selectTeamMembers,
   selectCurrentTeam,
-  selectAllProjects
+  selectAllProjects,
+  selectAllTasks
 } from '../../reducers/selectors';
 
 // TODO: remove unused imports
@@ -18,11 +19,13 @@ import { selectProjectMembers,
 const mapStateToProps = (state) => {
   const teams = selectAllTeams(state);
   const projects = selectAllProjects(state);
+  const tasks = selectAllTasks(state);
   const currentUser = state.entities.users.currentUser || state.session.loggedInUser;
 
   return {
     teams,
     projects,
+    tasks,
     currentUser,
     currentTeam: selectCurrentTeam(state) || teams[0],
     loggedInUser: state.session.loggedInUser,

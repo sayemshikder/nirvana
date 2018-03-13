@@ -2,11 +2,11 @@ import { connect } from 'react-redux';
 import React from 'react';
 import TaskIndex from './task_index';
 import { requestTasksByProjectId, requestTasksByUserId } from '../../actions/task_actions.js';
-import { selectTasks, selectCurrentUser } from '../../reducers/selectors.js';
+import { selectAllTasks, selectCurrentUser } from '../../reducers/selectors.js';
 
 const mapStateToProps = (state) => {
   return {
-    tasks: selectTasks(state),
+    tasks: selectAllTasks(state),
     currentUser: selectCurrentUser(state) || state.session.loggedInUser
   };
 };

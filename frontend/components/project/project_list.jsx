@@ -25,9 +25,12 @@ class ProjectList extends React.Component {
     });
 
     return (
-      <ul className="dash-sidebar__projects">
-        { projectLis }
-      </ul>
+      <div>
+        <h3>Projects</h3>
+        <ul className="dash-sidebar__projects">
+          { projectLis }
+        </ul>
+      </div>
     );
   }
 }

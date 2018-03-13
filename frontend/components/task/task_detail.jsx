@@ -3,9 +3,14 @@ import React from 'react';
 class TaskDetail extends React.Component {
   render () {
     const { task } = this.props;
+
+    if (!task) {
+      return null;
+    }
+    
     const date = new Date(task.dueDate);
     const monthDate = date.toString().split(' ')[1] + ' ' + date.getDate();
-    
+
     return (
       <div className="task-detail">
         <div className="task-detail__header">

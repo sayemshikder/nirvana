@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import ProfileIconContainer from '../user/profile_icon_container';
 import TaskIndexContainer from '../task/task_index_container';
+import TaskDetailContainer from '../task/task_detail_container';
 import SettingsModal from './settings_container';
 import ProjectListContainer from './../project/project_list_container.js';
 
@@ -39,7 +40,8 @@ class Dashboard extends React.Component {
       requestTasksByUserId,
       projects,
       requestAllTeams,
-      requestProjectsByTeamId
+      requestProjectsByTeamId,
+      tasks
     } = this.props;
 
     const avatarUrl = currentUser.avatarUrl;
@@ -112,6 +114,7 @@ class Dashboard extends React.Component {
 
           <div className="dash-task-content">
             <TaskIndexContainer />
+            <TaskDetailContainer task={tasks ? tasks[1] : null} />
           </div>
         </div>
       </div>
