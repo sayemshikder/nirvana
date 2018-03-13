@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import React from 'react';
 import Dash from './dash';
 import { logout } from '../../actions/session_actions';
-import { requestProjectMembers, requestTeamMembers } from '../../actions/user_actions';
+import { requestProjectMembers, requestTeamMembers, requestUser } from '../../actions/user_actions';
 import { requestAllTeams, requestTeam } from '../../actions/team_actions';
 import { selectProjectMembers, selectAllTeams, selectTeamMembers } from '../../reducers/selectors';
 
@@ -27,6 +27,7 @@ const mapDispatchToProps = (dispatch) => {
     requestAllTeams: () => dispatch(requestAllTeams()),
     requestTeamMembers: (teamId) => dispatch(requestTeamMembers(teamId)),
     requestTeam: (teamId) => dispatch(requestTeam(teamId)),
+    requestUser: (userId) => dispatch(requestUser(userId)),
   };
 };
 

@@ -10,7 +10,10 @@ const usersReducer = (oldState={}, action) => {
     case RECEIVE_PROJECT_MEMBERS:
       return merge({}, oldState, { projectMembers: action.projectMembers });
     case RECEIVE_TEAM_MEMBERS:
-      return { teamMembers: action.teamMembers };
+      let ogState = Object.assign({}, oldState);
+      ogState.teamMembers = action.teamMembers;
+      return ogState;
+      // return merge({}, oldState, { teamMember: action.teamMembers });
     case RECEIVE_USER:
       return merge({}, oldState, { currentUser: action.user} );
     case RECEIVE_LOGGED_IN_USER:

@@ -12,6 +12,7 @@ class Dashboard extends React.Component {
 
   componentDidMount() {
     this.props.requestTeamMembers(this.props.currentUser.teamIds[0]);
+    this.props.requestUser(this.props.currentUser.id);
     this.props.requestAllTeams();
   }
 
