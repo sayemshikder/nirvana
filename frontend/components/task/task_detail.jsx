@@ -20,6 +20,7 @@ class TaskDetail extends React.Component {
         <div className="task-detail__list">
           <ul>
             <li>Project ID: { task.projectId }</li>
+            <li>Title: { task.name }</li>
             <li>Description: { task.description }</li>
             <li>Creator ID: { task.creatorId }</li>
           </ul>

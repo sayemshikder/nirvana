@@ -18,6 +18,10 @@ class Api::TasksController < ApplicationController
     render "/api/tasks/index"
   end
 
+  def show
+    @task = Task.find(params[:id])
+  end
+
   private
 
   def team_params

@@ -25,3 +25,11 @@ export const fetchTasksByUserAndTeamIds = (userId, teamId) => {
     url: `/api/users/${userId}/teams/${teamId}/tasks`
   });
 };
+
+
+export const fetchTask = (taskId) => {
+  return $.ajax({
+    method: 'GET',
+    url: `/api/tasks/${taskId}`
+  });
+};

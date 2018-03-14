@@ -5,14 +5,16 @@ import { logout } from '../../actions/session_actions';
 import { requestTeamMembers, requestUser } from '../../actions/user_actions';
 import { requestProjectsByTeamId } from '../../actions/project_actions';
 import { requestTeam, requestAllTeams} from '../../actions/team_actions';
-import { requestTasksByUserId } from '../../actions/task_actions';
+import { requestTask, requestTasksByUserId } from '../../actions/task_actions';
 import { selectProjectMembers,
   selectAllTeams,
   selectTeamMembers,
   selectCurrentTeam,
   selectAllProjects,
   selectAllTasks,
-  selectCurrentUser
+  selectCurrentUser,
+  selectCurrentProject,
+  selectCurrentTask,
 } from '../../reducers/selectors';
 
 // TODO: remove unused imports
@@ -29,6 +31,8 @@ const mapStateToProps = (state) => {
     tasks,
     currentUser,
     currentTeam: selectCurrentTeam(state) || teams[0],
+    currentProject: selectCurrentProject(state),
+    currentTask: selectCurrentTask(state),
     loggedInUser: state.session.loggedInUser,
     projectMembers: selectProjectMembers(state),
     teamMembers: selectTeamMembers(state),
@@ -41,6 +45,7 @@ const mapDispatchToProps = (dispatch) => {
     requestTeamMembers: (teamId) => dispatch(requestTeamMembers(teamId)),
     requestTeam: (teamId) => dispatch(requestTeam(teamId)),
     requestUser: (userId) => dispatch(requestUser(userId)),
+    requestTask: (taskId) => dispatch(requestUser(taskId)),
     requestTasksByUserId: (userId) => dispatch(requestTasksByUserId(userId)),
     requestAllTeams: () => dispatch(requestAllTeams()),
     requestProjectsByTeamId: (teamId) => dispatch(requestProjectsByTeamId(teamId)),

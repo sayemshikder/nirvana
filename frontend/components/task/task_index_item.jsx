@@ -4,12 +4,6 @@ import { Link } from 'react-router-dom';
 class TaskIndexItem extends React.Component {
   constructor() {
     super();
-
-    this.handleClick = this.handleClick.bind(this);
-  }
-  
-  handleClick() {
-
   }
 
   render() {
@@ -25,7 +19,7 @@ class TaskIndexItem extends React.Component {
     }
 
     return (
-      <li onClick={ this.handleClick }>
+      <li onClick={ this.props.handleClick }>
         <p>{ task.name }</p>
         <p>{ monthDate }</p>
         <hr />

@@ -5,6 +5,7 @@ import TaskIndexContainer from '../task/task_index_container';
 import TaskDetailContainer from '../task/task_detail_container';
 import SettingsModal from './settings_container';
 import ProjectListContainer from './../project/project_list_container.js';
+import { isEmpty } from 'lodash';
 
 class Dashboard extends React.Component {
   constructor(props) {
@@ -27,16 +28,21 @@ class Dashboard extends React.Component {
     this.props.logout();
   }
 
+  componentWillReceiveProps(nextProps) {
+  }
+
   renderTaskDetail() {
-    if (this.props.tasks.length > 1) {
+    const { currentTask } = this.props;
+
+    if (!isEmpty(currentTask)) {
       return (
-        <TaskDetailContainer task={this.props.tasks[0]} /> // TODO: hardcoded
+        <TaskDetailContainer task={ currentTask } />
       );
     }
   }
 
   render() {
-    // TODO: refactor this into SettingsContainer
+    // TODO: refactor this eyesore into SettingsContainer
     const {
       currentUser,
       currentTeam,

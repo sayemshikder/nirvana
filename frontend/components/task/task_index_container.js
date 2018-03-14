@@ -6,6 +6,8 @@ import {
   requestTasksByUserId,
   requestTasksByTeamId,
   requestTasksByUserAndTeamIds,
+  requestTask,
+  clearTask,
   openTaskDetail,
   closeTaskDetail
 } from '../../actions/task_actions.js';
@@ -30,7 +32,8 @@ const mapDispatchToProps = dispatch => {
     requestTasksByUserId: (userId) => dispatch(requestTasksByUserId(userId)),
     requestTasksByTeamId: (teamId) => dispatch(requestTasksByTeamId(teamId)),
     requestTasksByUserAndTeamIds: (userId, teamId) => dispatch(requestTasksByUserAndTeamIds(userId, teamId)),
-    openTaskDetail: (taskId) => dispatch(openTaskDetail(taskId)),
+    requestTask: (taskId) => dispatch(requestTask(taskId)),
+    clearTask: () => dispatch(clearTask()),
   };
 };
 

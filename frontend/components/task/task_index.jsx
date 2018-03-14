@@ -27,8 +27,13 @@ class TaskIndex extends React.Component {
   }
 
   render () {
-    const { tasks } = this.props;
-    const taskItems = tasks.map((task) => <TaskIndexItem task={ task } key={ task.id }/>);
+    const { tasks, requestTask } = this.props;
+    const taskItems = tasks.map((task) => (
+      <TaskIndexItem
+        task={ task }
+        key={ task.id }
+        handleClick={ () => requestTask(task.id) } />
+    ));
 
     // goes after task-index__list-section
     // <div className="task-index__list-section-header">
