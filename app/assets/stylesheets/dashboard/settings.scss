@@ -4,10 +4,19 @@
   right: 20px;
   display: flex;
   flex-direction: column;
-  width: 252px;
+  width: 250px;
   background-color: white;
   border: 1px solid #E0E6E8;
   border-radius: 3px;
+
+  -webkit-box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.15);
+  -moz-box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.15);
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.15);
+}
+
+.react-modal ul {
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 .react-modal:focus {
@@ -20,4 +29,23 @@
   left: 0px;
   right: 0px;
   bottom: 0px;
+}
+
+.dash-nav__settings-dropdown-item {
+  padding-left: 30px;
+  height: 40px;
+  font-family: "Segoe UI";
+  font-size: 13px;
+  line-height: 40px;
+  vertical-align: middle;
+}
+
+.dash-nav__settings-dropdown-item:hover {
+  background-color: #26ABF2;
+  color: white;
+  cursor: pointer;
+}
+
+.settings-logout {
+  border-top: 1px solid #E0E6E8;
 }

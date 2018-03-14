@@ -36,7 +36,7 @@ class SettingsModal extends React.Component {
     const { name, avatarUrl, logout, teams, currentTeam } = this.props;
     const teamList = teams.map((team) => {
       return (
-        <li key={ team.id } onClick={ () => this.handleTeamClick(team.id) }>
+        <li key={ team.id } onClick={ () => this.handleTeamClick(team.id)} className="dash-nav__settings-dropdown-item">
           { team.name }
         </li>
       );
@@ -58,11 +58,10 @@ class SettingsModal extends React.Component {
           shouldCloseOnOverlayClick={true}
           onRequestClose={ this.handleCloseModal }
         >
-
-          <h3>Teams</h3>
-          { teamList }
-
-          <button onClick={ logout }>Logout</button>
+          <ul>
+            { teamList }
+            <li className="dash-nav__settings-dropdown-item settings-logout" onClick={ logout }>Log Out</li>
+          </ul>
         </Modal>
       </div>
     );
