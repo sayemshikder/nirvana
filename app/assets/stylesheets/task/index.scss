@@ -11,6 +11,12 @@
   width: 486px;
   display: flex;
   flex-direction: column;
+  overflow-y: hidden;
+  font-family: "Segoe UI";
+
+}
+
+.task-index:hover {
   overflow-y: auto;
 }
 
@@ -40,4 +46,26 @@
   -webkit-box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.15);
   -moz-box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.15);
   box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.15);
+}
+
+.task-index__item {
+  font-size: 13px;
+  height: 35px;
+  box-sizing: border-box;
+  line-height: 35px;
+  vertical-align: center;
+  display: flex;
+  justify-content: space-around;
+}
+
+.task-index__item:not(:last-child) {
+  border-bottom: 1px solid #E0E6E8;
+}
+
+.task-index__task-name {
+  margin-right: auto;
+}
+
+.task-index__task-due-date {
+  // past due color red
 }

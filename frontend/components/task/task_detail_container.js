@@ -7,12 +7,14 @@ const mapStateToProps = (state, ownProps) => {
   return {
     task: ownProps.task,
     assignee: state.entities.users.teamMembers[ownProps.task.assigneeId],
+    project: state.entities.projects.projects[ownProps.task.projectId],
+    creator: state.entities.users.teamMembers[ownProps.task.creatorId],
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    
+
   };
 };
 

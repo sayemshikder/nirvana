@@ -19,10 +19,9 @@ class TaskIndexItem extends React.Component {
     }
 
     return (
-      <li onClick={ this.props.handleClick }>
-        <p>{ task.name }</p>
-        <p>{ monthDate }</p>
-        <hr />
+      <li className="task-index__item" onClick={ this.props.handleClick }>
+        <div className="task-index__task-name">{ task.name }</div>
+        <div className="task-index__task-due-date">{ monthDate }</div>
       </li>
     );
   }
