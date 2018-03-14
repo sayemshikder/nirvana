@@ -19,16 +19,13 @@ class Dashboard extends React.Component {
       this.props.requestTeam(curTeamId);
       this.props.requestProjectsByTeamId(curTeamId);
       this.props.requestTeamMembers(curTeamId);
+      this.props.requestTasksByTeamId(curTeamId);
     });
     this.props.requestUser(this.props.currentUser.id);
-    this.props.requestTasksByUserId(this.props.currentUser.id);
   }
 
   logout() {
     this.props.logout();
-  }
-
-  componentWillReceiveProps(nextProps) {
   }
 
   renderTaskDetail() {

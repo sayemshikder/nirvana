@@ -28,8 +28,8 @@ demo_user = User.create(
   avatar_url: "https://i.imgur.com/R4NaNBC.png"
 )
 
-team = Team.create(name: 'Exercitus Romanus', leader_id: demo_user.id)
-TeamMembership.create(team_id: team.id, user_id: demo_user.id)
+demo_team = Team.create(name: 'Exercitus Romanus', leader_id: demo_user.id)
+TeamMembership.create(team_id: demo_team.id, user_id: demo_user.id)
 
 (MAX_USERS - 1).times do |i|
   faker_user = Faker::Omniauth.google
@@ -55,13 +55,6 @@ TeamMembership.create(team_id: 2, user_id: demo_user.id)
 TeamMembership.create(team_id: 3, user_id: demo_user.id)
 
 User.all.each do |user|
-  # if user.id != 1
-  #   TeamMembership.create(
-  #     user_id: user.id,
-  #     team_id: Team.all.sample.id
-  #   )
-  # end
-
   if user.id != 1
     # Add user to random number of teams
     random_team_ids = Array.new(rand(1..MAX_TEAMS)) { rand(1..MAX_TEAMS) }
@@ -87,7 +80,7 @@ Team.all.each do |team|
   MAX_TASKS_PER_TEAM.times do
     random_proj_id = team.projects.sample.id
     now = Date.today
-    Task.create!(name: Faker::Company.bs + " p#{random_proj_id} t#{task_count + 1}",
+    Task.create!(name: Faker::Company.bs.capitalize + " p#{random_proj_id} t#{task_count + 1}",
                  description: Faker::Hipster.sentence,
                  due_date: Faker::Time.between(Date.new(now.year, 1, 1), Date.new(now.year + 1, 12, 31)),
                  creator_id: team.members.sample.id,

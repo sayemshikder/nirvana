@@ -8,6 +8,10 @@ export const selectCurrentUser = (state) => {
   return state.entities.users.currentUser;
 };
 
+export const selectLoggedInUser = (state) => {
+  return state.session.loggedInUser;
+};
+
 export const selectCurrentTeam = (state) => {
   return state.entities.teams.currentTeam;
 };

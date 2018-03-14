@@ -21,7 +21,7 @@
   align-items: center;
 
   padding-left: 23px;
-  // padding-right: 23px;
+  padding-right: 23px;
   padding-top: 10px;
   padding-bottom: 10px;
   height: 50px;
@@ -34,11 +34,10 @@
 
 .task-detail__header-date {
   color: #69737C;
-  width: 114px;
   height: 35px;
-  padding-left: 2px;
-  padding-right: 2px;
-  text-align: center;
+  padding-left: 5px;
+  padding-right: 5px;
+  text-align: right;
   vertical-align: middle;
   line-height: 35px;
   overflow: hidden;
@@ -54,15 +53,15 @@
 
 .task-detail__header-assignee {
   color: #69737C;
-  width: 138px;
   height: 35px;
   line-height: 35px;
-  padding-left: 2px;
-  padding-right: 2px;
-  text-align: center;
+  padding-left: 5px;
+  padding-right: 5px;
+  text-align: left;
   vertical-align: middle;
   overflow: hidden;
   border: 1px solid transparent;
+  box-sizing: border-box;
 }
 
 .task-detail__header-assignee:hover {
@@ -80,7 +79,8 @@
 }
 
 .task-detail__list-item {
-  padding: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
   font-family: "Segoe UI";
 }
 
@@ -89,7 +89,16 @@
   color: #848F98;
   text-align: center;
   width: fit-content;
+  font-size: 13px;
+  line-height: 1px;
   border-radius: 20px;
+  box-sizing: border-box;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.task-detail__list-project-name:hover {
+  cursor: pointer;
 }
 
 .task-detail__list-task-name {
@@ -99,4 +108,22 @@
 
 .task-detail__list-task-description {
   font-size: 13px;
+}
+
+.task-detail__list--editable {
+  border-bottom: 1px solid rgb(224, 230, 232);
+}
+
+.task-detail__list--history {
+  padding-top: 20px;
+}
+
+.task-detail__list-history-item {
+  font-size: 11px;
+  color: rgb(132, 143, 153);
+  padding: 2px 0;
+}
+
+.task-detail__list-history-item--creator {
+  font-weight: 500;
 }
