@@ -12,7 +12,7 @@ class TaskDetail extends React.Component {
     if (this.props.assignee) {
       return (
         <li className="task-detail__list-history-item">
-          <span className="task-detail__list-history-item--creator">{creator.name}</span> assigned to {assignee.name}
+          <span className="task-detail__list-history-item--creator">{creator.name}</span> assigned to {assignee.name}.
         </li>
       );
     }
@@ -33,7 +33,7 @@ class TaskDetail extends React.Component {
     if (fullDate.getYear() !== new Date().getYear()) {
       monthDate += `, ${ fullDate.getFullYear() }`;
     }
-    
+
     return (
       <div className="task-detail">
         <div className="task-detail__header">
@@ -52,7 +52,7 @@ class TaskDetail extends React.Component {
                 <span className="task-detail__list-history-item--creator">{ creator.name }</span> created task.
               </li>
               <li className="task-detail__list-history-item">
-                <span className="task-detail__list-history-item--creator">{ creator.name }</span> added to {project.name}
+                <span className="task-detail__list-history-item--creator">{ creator.name }</span> added to {project.name}.
               </li>
               { this.renderTaskAssignedInfo() }
             </div>

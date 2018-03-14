@@ -15,8 +15,43 @@
   z-index: 1;
 }
 
+.dash-sidebar__member-header {
+  color: #9ca6af;
+  font-size: 13px;
+  font-family: "Segoe UI";
+  text-transform: uppercase;
+  margin-left: 15px;
+}
+
 .dash-sidebar__member-avatars .profile__avatar {
   margin-left: 7px;
   width: 30px;
   height: 30px;
+}
+
+.dash-sidebar__member-avatars .profile__avatar:hover {
+  cursor: pointer;
+}
+
+.dash-sidebar__projects {
+  margin-left: 15px;
+}
+
+.dash-sidebar__projects-header {
+  color: #9ca6af;
+  font-size: 13px;
+  font-family: "Segoe UI";
+  text-transform: uppercase;
+}
+
+
+.dash-sidebar__projects-list-item {
+  color: #FFF;
+  font-size: 15px;
+  font-family: "Segoe UI";
+  margin-bottom: 5px;
+}
+
+.dash-sidebar__projects-list-item {
+  cursor: pointer;
 }

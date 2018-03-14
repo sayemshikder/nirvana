@@ -72,6 +72,7 @@ class Dashboard extends React.Component {
       <div className="dash">
         <div className="dash-sidebar">
           <li className="logo_dark"></li>
+          <div className="dash-sidebar__member-header">Team Members</div>
           <ul className="dash-sidebar__member-avatars">
             { profiles }
           </ul>
