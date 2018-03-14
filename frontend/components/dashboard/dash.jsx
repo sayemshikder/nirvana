@@ -17,13 +17,22 @@ class Dashboard extends React.Component {
       const curTeamId = this.props.currentTeam.id;
       this.props.requestTeam(curTeamId);
       this.props.requestProjectsByTeamId(curTeamId);
+      this.props.requestTeamMembers(curTeamId);
     });
-    this.props.requestTeamMembers(this.props.currentUser.teamIds[0]);
     this.props.requestUser(this.props.currentUser.id);
+    this.props.requestTasksByUserId(this.props.currentUser.id);
   }
 
   logout() {
     this.props.logout();
+  }
+
+  renderTaskDetail() {
+    if (this.props.tasks.length > 1) {
+      return (
+        <TaskDetailContainer task={this.props.tasks[0]} /> // TODO: hardcoded
+      );
+    }
   }
 
   render() {
@@ -61,10 +70,12 @@ class Dashboard extends React.Component {
         <div className="dash-sidebar">
           <li className="logo_dark"></li>
           <ul className="dash-sidebar__member-avatars">
-            {profiles}
+            { profiles }
           </ul>
 
-          <ProjectListContainer projects={projects} />
+          <ProjectListContainer
+            projects={ projects }
+          />
         </div>
 
         <div className="dash-tasks">
@@ -114,7 +125,7 @@ class Dashboard extends React.Component {
 
           <div className="dash-task-content">
             <TaskIndexContainer />
-            <TaskDetailContainer task={tasks ? tasks[1] : null} />
+            { this.renderTaskDetail() }
           </div>
         </div>
       </div>

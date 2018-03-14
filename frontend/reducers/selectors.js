@@ -12,6 +12,10 @@ export const selectCurrentTeam = (state) => {
   return state.entities.teams.currentTeam;
 };
 
+export const selectCurrentProject = (state) => {
+  return state.entities.teams.currentProject;
+};
+
 export const selectTeamMembers = (state) => {
   return values(state.entities.users.teamMembers);
 };

@@ -4,16 +4,26 @@ import TaskIndexItem from './task_index_item';
 
 class TaskIndex extends React.Component {
   componentDidMount() {
-    this.props.requestTasksByUserId(this.props.currentUser.id);
+    // this.props.requestTasksByUserId(this.props.currentUser.id);
   }
 
   componentWillReceiveProps(nextProps) {
-    if (this.props.currentUser !== nextProps.currentUser) {
-      this.props.requestTasksByUserId(nextProps.currentUser.id);
+    const { currentUser,
+      currentProject,
+      currentTeam,
+      requestTasksByUserId,
+      requestTasksByProjectId,
+      requestTasksByTeamId,
+      requestTasksByUserAndTeamIds
+    } = this.props;
+
+    if (currentUser && (currentUser.id !== nextProps.currentUser.id)) {
+      requestTasksByUserAndTeamIds(nextProps.currentUser.id, currentTeam.id);
+    } else if (currentProject && (currentProject.id !== nextProps.currentProject.id)) {
+      requestTasksByProjectId(nextProps.currentProject.id);
+    } else if (currentTeam && (currentTeam.id !== nextProps.currentTeam.id)) {
+      requestTasksByTeamId(nextProps.currentTeam.id);
     }
-    // else if (this.props.currentProject !== nextProps.currentProject) {
-    //
-    // }
   }
 
   render () {
@@ -25,7 +35,7 @@ class TaskIndex extends React.Component {
     //   <i className="dropdown_icon"></i>
     //   <span>New Tasks</span>
     // </div>
-    
+
     return (
       <div className="task-index">
         <div className="task-index__header">

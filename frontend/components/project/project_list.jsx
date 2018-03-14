@@ -7,10 +7,9 @@ class ProjectList extends React.Component {
   }
 
   handleClick(projectId) {
-    // change projects
     this.props.requestProject(projectId);
-    // change tasks
     this.props.requestTasksByProjectId(projectId);
+    this.props.requestUser(this.props.currentUser.id);
   }
 
   render () {

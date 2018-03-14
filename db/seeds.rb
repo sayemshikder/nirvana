@@ -13,7 +13,7 @@ DatabaseCleaner.clean_with(:truncation)
 MAX_USERS = 9
 MAX_TEAMS = 3
 MAX_PROJECTS = 15
-MAX_TASKS = 45
+MAX_TASKS_PER_TEAM = 20
 
 # Demo User
 demo_user = User.create(
@@ -31,12 +31,12 @@ demo_user = User.create(
 team = Team.create(name: 'Exercitus Romanus', leader_id: demo_user.id)
 TeamMembership.create(team_id: team.id, user_id: demo_user.id)
 
-(MAX_USERS - 1).times do
+(MAX_USERS - 1).times do |i|
   faker_user = Faker::Omniauth.google
   email = faker_user[:info][:email]
 
   User.create(
-    name: faker_user[:info][:name],
+    name: faker_user[:info][:name] + " u#{i + 2}",
     role: Faker::Lovecraft.tome,
     dept: Faker::Lovecraft.location,
     email: email,
@@ -45,9 +45,9 @@ TeamMembership.create(team_id: team.id, user_id: demo_user.id)
   )
 end
 
-(MAX_TEAMS - 1).times do |n|
+(MAX_TEAMS - 1).times do |i|
   Team.create(
-    name: Faker::Pokemon.move,
+    name: Faker::Pokemon.move + " t#{i + 2}",
     leader_id: rand(1..MAX_USERS))
 end
 
@@ -75,25 +75,26 @@ User.all.each do |user|
   end
 end
 
-MAX_PROJECTS.times do
-  Project.create(name: Faker::OnePiece.location,
+MAX_PROJECTS.times do |i|
+  Project.create(name: Faker::OnePiece.location + " p#{i + 1}",
                  description: Faker::Company.catch_phrase,
                  team_id: Team.all.sample.id
                 )
 end
 
-tasks_per_project = MAX_TASKS / MAX_PROJECTS
-Project.all.each do |proj|
-  tasks_per_project.times do
+task_count = 0
+Team.all.each do |team|
+  MAX_TASKS_PER_TEAM.times do
+    random_proj_id = team.projects.sample.id
     now = Date.today
-
-    Task.create!(name: Faker::Company.bs,
+    Task.create!(name: Faker::Company.bs + " p#{random_proj_id} t#{task_count + 1}",
                  description: Faker::Hipster.sentence,
                  due_date: Faker::Time.between(Date.new(now.year, 1, 1), Date.new(now.year + 1, 12, 31)),
-                 creator_id: User.all.sample.id,
-                 assignee_id: User.all.sample.id,
-                 project_id: proj.id,
+                 creator_id: team.members.sample.id,
+                 assignee_id: team.members.sample.id,
+                 project_id: random_proj_id,
                  completed: false
                 )
+    task_count += 1
   end
 end
