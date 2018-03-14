@@ -6,10 +6,14 @@ class ProjectList extends React.Component {
     this.handleClick = this.handleClick.bind(this);
   }
 
-  handleClick(projectId) {
-    this.props.requestProject(projectId);
-    this.props.requestTasksByProjectId(projectId);
+  handleClick(project) {
+    this.props.requestProject(project.id);
+    this.props.requestTasksByProjectId(project.id);
     this.props.requestUser(this.props.currentUser.id);
+    // TODO: do this w/ redux
+    $('.dash-sub-nav__header-team').text(project.name);
+    // transparent 1x1 pixel
+    $('.dash-sub-nav__header-avatar').attr('src', 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==');
   }
 
   render () {
@@ -17,7 +21,7 @@ class ProjectList extends React.Component {
     const projectLis = projects.map((project) => {
       return (
         <li className="dash-sidebar__projects-list-item" key={ project.id }
-          onClick={ () => this.handleClick(project.id) }>
+          onClick={ () => this.handleClick(project) }>
           { project.name }
         </li>
       );

@@ -11,6 +11,7 @@ class Dashboard extends React.Component {
   constructor(props) {
     super(props);
     this.logout = this.logout.bind(this);
+    this.renderHeader = this.renderHeader.bind(this);
   }
 
   componentDidMount() {
@@ -26,6 +27,16 @@ class Dashboard extends React.Component {
 
   logout() {
     this.props.logout();
+  }
+
+  renderHeader() {
+    const { currentUser, currentTeam, loggedInUser } = this.props;
+
+    let prefix = 'My';
+    if (currentUser.id !== loggedInUser) {
+      prefix = `${currentUser.name.split(' ')[0]}'s`;
+    }
+    return `${ prefix } Tasks in ${ currentTeam.name }`;
   }
 
   renderTaskDetail() {
@@ -116,7 +127,7 @@ class Dashboard extends React.Component {
             <div className="dash-sub-nav__header">
               <img className="dash-sub-nav__header-avatar" src={ currentUser.avatarUrl } />
               <h1 className="dash-sub-nav__header-team">
-                {currentUser.id === loggedInUser.id ? 'My' : `${currentUser.name}'s`} Tasks in { currentTeam ? currentTeam.name : 'Loading...' }
+                { this.renderHeader() }
               </h1>
             </div>
 
