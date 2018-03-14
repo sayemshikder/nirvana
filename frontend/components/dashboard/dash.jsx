@@ -33,7 +33,7 @@ class Dashboard extends React.Component {
     const { currentUser, currentTeam, loggedInUser } = this.props;
 
     let prefix = 'My';
-    if (currentUser.id !== loggedInUser) {
+    if (currentUser.id !== loggedInUser.id) {
       prefix = `${currentUser.name.split(' ')[0]}'s`;
     }
     return `${ prefix } Tasks in ${ currentTeam.name }`;
