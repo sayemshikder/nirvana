@@ -24,6 +24,7 @@
 }
 
 .dash-nav__settings-dropdown {
+  width: 150px;
   margin: 0 20px;
   display: flex;
   align-items: center;
@@ -31,6 +32,10 @@
 
 .dash-nav__settings-dropdown:hover {
   cursor: pointer;
+}
+
+.settings-team-name {
+  margin-left: auto;
 }
 
 .dash-nav__avatar {

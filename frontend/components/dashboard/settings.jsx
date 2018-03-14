@@ -45,7 +45,7 @@ class SettingsModal extends React.Component {
     return (
       <div>
         <li className="dash-nav__settings-dropdown" onClick={this.handleOpenModal}>
-          <div>{ currentTeam ? currentTeam.name : 'Loading...' }</div>
+          <div className="settings-team-name">{ currentTeam ? currentTeam.name : 'Loading...' }</div>
           <a src="#">
             <img className="dash-nav__avatar" src={ avatarUrl } />
           </a>
