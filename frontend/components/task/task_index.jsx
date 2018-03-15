@@ -34,8 +34,10 @@ class TaskIndex extends React.Component {
 
   handleAddTask() {
     this.props.createTask({
-
+      creator_id: this.props.currentUser.id,
+      project_id: this.props.currentProject.id
     });
+    $('.task-index__list').animate({scrollTop: $(document).height()}, 'slow');
   }
 
   render () {

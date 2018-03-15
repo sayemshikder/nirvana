@@ -12,24 +12,20 @@ class TaskIndexItem extends React.Component {
       description: description || '',
     };
 
-    this.handleBlur = this.handleBlur.bind(this);
     this.handleChange = this.handleChange.bind(this);
-    this.updateState = this.updateState.bind(this);
   }
 
-  handleBlur(e) {
-    // send update action
-    this.props.updateTask(this.state);
-  }
-
-  updateState(field, value) {
+  // TODO: make this more efficient, 2 controlled inputs 
+  handleChange(e) {
+    const field = e.target.name;
+    const value = e.target.value;
     this.setState({
       [field]: value
-    });
+    }, this.updateTask);
   }
 
-  handleChange(e) {
-    this.updateState(e.target.name, e.target.value);
+  updateTask() {
+    this.props.updateTask(this.state);
   }
 
   render() {
@@ -55,8 +51,7 @@ class TaskIndexItem extends React.Component {
     return (
       <li className="task-index__item"
         onClick={ this.props.handleClick }
-        tabIndex="0"
-        onBlur={ this.handleBlur }>
+        tabIndex="0">
         <div className="task-index__task-name">
           <input className="task-index-input"
             name="name"

@@ -39,6 +39,14 @@ class Dashboard extends React.Component {
     return `${ prefix } Tasks in ${ currentTeam.name }`;
   }
 
+  componentWillReceiveProps(newProps) {
+    // const oldTask = this.props.currentTask;
+    // const newTask = newProps.currentTask;
+    // if (oldTask && newTask && oldTask.id !== newTask.id) {
+    //   this.render();
+    // }
+  }
+
   renderTaskDetail() {
     const { currentTask } = this.props;
 

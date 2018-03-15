@@ -25,7 +25,7 @@ class Api::TasksController < ApplicationController
   def create
     @task = Task.new(team_params)
 
-    if @task.save
+    if @task.save!
       render "/api/tasks/show"
     else
       render json: @task.errors.full_messages, status: 422
