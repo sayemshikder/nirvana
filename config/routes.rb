@@ -23,8 +23,8 @@ Rails.application.routes.draw do
       resources :tasks, only: %i[index]
     end
 
-    resources :tasks, only: %i[show]
-    
+    resources :tasks, only: %i[create show update]
+
     resource :session, only: %i[create destroy]
   end
 

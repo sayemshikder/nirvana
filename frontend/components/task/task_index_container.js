@@ -9,7 +9,9 @@ import {
   requestTask,
   clearTask,
   openTaskDetail,
-  closeTaskDetail
+  closeTaskDetail,
+  updateTask,
+  createTask,
 } from '../../actions/task_actions.js';
 import { selectAllTasks,
   selectCurrentUser,
@@ -34,6 +36,8 @@ const mapDispatchToProps = dispatch => {
     requestTasksByUserAndTeamIds: (userId, teamId) => dispatch(requestTasksByUserAndTeamIds(userId, teamId)),
     requestTask: (taskId) => dispatch(requestTask(taskId)),
     clearTask: () => dispatch(clearTask()),
+    createTask: (task) => dispatch(createTask(task)),
+    updateTask: (task) => dispatch(updateTask(task)),
   };
 };
 

@@ -68,3 +68,15 @@ export const requestTask = (taskId) => (dispatch) => {
     dispatch(receiveTask(task));
   });
 };
+
+export const createTask = (task) => (dispatch) => {
+  return TasksApiUtil.createTask(task).then((newTask) => {
+    dispatch(receiveTask(newTask));
+  });
+};
+
+export const updateTask = (task) => (dispatch) => {
+  return TasksApiUtil.updateTask(task).then((newTask) => {
+    dispatch(receiveTask(newTask));
+  });
+};

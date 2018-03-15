@@ -97,6 +97,7 @@ body {
   height: 198px;
   animation: wave 20s cubic-bezier( 0.36, 0.45, 0.63, 0.53) infinite;
   transform: translate3d(0, 0, 0);
+  filter: invert(1.5) sepia(1) saturate(5) hue-rotate(223deg);
 }
 
 .wave:nth-of-type(2) {
@@ -104,6 +105,7 @@ body {
   top: 23px;
   animation: wave 50s cubic-bezier( 0.36, 0.45, 0.63, 0.53) -.125s infinite, swell 7s ease -1.25s infinite;
   opacity: 1;
+  filter: invert(1.5) sepia(1) saturate(5) hue-rotate(180deg);
 }
 
 @keyframes wave {

@@ -12,7 +12,10 @@ const tasksReducer = (oldState={}, action) => {
         currentTask: {}
       };
     case RECEIVE_TASK:
+      const newTask = { [action.task.id]: action.task };
+      // TODO: delete old task
       return merge({}, oldState, {
+        tasks: newTask,
         currentTask: action.task
       });
     case CLEAR_TASK:

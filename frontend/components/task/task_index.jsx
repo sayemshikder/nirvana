@@ -1,8 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import TaskIndexItem from './task_index_item';
+import TaskIndexItemContainer from './task_index_item_container';
 
 class TaskIndex extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.handleAddTask = this.handleAddTask.bind(this);
+  }
+
   componentDidMount() {
     // this.props.requestTasksByUserId(this.props.currentUser.id);
   }
@@ -26,10 +32,16 @@ class TaskIndex extends React.Component {
     }
   }
 
+  handleAddTask() {
+    this.props.createTask({
+
+    });
+  }
+
   render () {
     const { tasks, requestTask } = this.props;
     const taskItems = tasks.map((task) => (
-      <TaskIndexItem
+      <TaskIndexItemContainer
         task={ task }
         key={ task.id }
         handleClick={ () => requestTask(task.id) } />
@@ -44,7 +56,7 @@ class TaskIndex extends React.Component {
     return (
       <div className="task-index">
         <div className="task-index__header">
-          <Link to="#" className="task-index__add-task-btn">Add Task</Link>
+          <Link to="#" className="task-index__add-task-btn" onClick={ this.handleAddTask }>Add Task</Link>
         </div>
 
         <div className="task-index__list">
