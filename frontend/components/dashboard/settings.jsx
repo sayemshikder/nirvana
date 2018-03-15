@@ -30,6 +30,10 @@ class SettingsModal extends React.Component {
     this.props.requestTeamMembers(teamId);
     this.props.requestUser(this.props.currentUser.id);
     this.props.requestTasksByUserId(this.props.currentUser.id);
+
+    // TODO: do this w/ react
+    // $('.dash-sub-nav__header-team').text('All Tasks in ' + this.props.currentTeam.name);
+    // $('.dash-sub-nav__header-avatar').attr('src', 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==');
   }
 
   render () {
@@ -59,8 +63,10 @@ class SettingsModal extends React.Component {
           onRequestClose={ this.handleCloseModal }
         >
           <ul>
-            { teamList }
-            <li className="dash-nav__settings-dropdown-item settings-logout" onClick={ logout }>Log Out</li>
+            <div onClick={ this.handleCloseModal }>
+              { teamList }
+              <li className="dash-nav__settings-dropdown-item settings-logout" onClick={ logout }>Log Out</li>
+            </div>
           </ul>
         </Modal>
       </div>

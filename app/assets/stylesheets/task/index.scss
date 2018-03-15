@@ -48,23 +48,41 @@
 .task-index__item {
   font-size: 13px;
   height: 35px;
-  box-sizing: border-box;
-  line-height: 35px;
-  vertical-align: center;
+  line-height: 33px;
   display: flex;
   justify-content: space-around;
+  box-sizing: border-box;
+  border-top: 1px solid transparent;
+  border-bottom: 1px solid transparent;
+  padding-bottom: 5px;
+}
+
+.task-index__item:not(:first-child) {
+  border-top: 1px solid #E0E6E8;
 }
 
 .task-index__item:hover {
   background-color: #F6F8F9;
 }
 
-.task-index__item:not(:last-child) {
-  border-bottom: 1px solid #E0E6E8;
+.task-index__item:focus-within {
+  outline: none;
+  border-top: 1px solid #26ABF2;
+  border-bottom: 1px solid #26ABF2;
 }
 
 .task-index__task-name {
   margin-right: auto;
+}
+
+.task-index-input {
+  border: none;
+  background: transparent;
+  width: 400px;
+}
+
+.task-index-input:focus {
+  outline: none;
 }
 
 .past-due {

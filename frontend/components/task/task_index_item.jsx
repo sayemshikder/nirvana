@@ -20,8 +20,10 @@ class TaskIndexItem extends React.Component {
     }
 
     return (
-      <li className="task-index__item" onClick={ this.props.handleClick }>
-        <div className="task-index__task-name">{ task.name }</div>
+      <li className="task-index__item" onClick={ this.props.handleClick } tabindex="0">
+        <div className="task-index__task-name">
+          <input className="task-index-input" value={ task.name } />
+        </div>
         <div className={`task-index__task-due-date ${today.getTime() > fullDate.getTime() ? 'past-due' : ''}`}>{ monthDate }</div>
       </li>
     );
