@@ -17,18 +17,15 @@ MAX_TASKS_PER_TEAM = 20
 
 # Demo User
 demo_user = User.create(
-  name: "Maximus Decimus Meridius",
-  role: "General",
-  dept: "Legio IV Flavia Felix",
-  email: "maximus@nirvana.xyz",
+  name: "Demo User",
+  role: "Demo Role",
+  dept: "Demo Department",
+  email: "demo@nirvana.xyz",
   password: "$#J2E*&PLGtEXupaI*x##g^GdWiJ*v",
-  about_me: "My name is Maximus Decimus Meridius. Commander of the"\
-    " Armies of the North. General of the Felix Legions. Loyal servant"\
-    " to the true Emperor, Marcus Aurelius.",
-  avatar_url: "https://i.imgur.com/R4NaNBC.png"
+  about_me: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
 )
 
-demo_team = Team.create(name: 'Exercitus Romanus', leader_id: demo_user.id)
+demo_team = Team.create(name: 'Demo User\'s Team', leader_id: demo_user.id)
 TeamMembership.create(team_id: demo_team.id, user_id: demo_user.id)
 
 (MAX_USERS - 1).times do |i|
