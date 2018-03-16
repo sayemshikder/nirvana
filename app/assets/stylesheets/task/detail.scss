@@ -72,6 +72,31 @@
   background-color: #F6F8F9;
 }
 
+.task_detail__select-assignee {
+  width: 250px;
+  outline: none;
+}
+
+.task_detail__select-assignee .Select-control {
+  border: none;
+}
+
+.task_detail__select-assignee .Select-arrow-zone {
+  visibility: hidden;
+}
+
+.task_detail__select-assignee .Select-clear-zone {
+  visibility: hidden;
+}
+
+.task_detail__select-assignee .Select-value {
+  line-height: 40px;
+}
+
+.task_detail__select-assignee .Select-value-label {
+  line-height: 40px;
+}
+
 .task-detail__list {
   padding: 15px 30px;
   display: flex;

@@ -22,7 +22,7 @@ class ProjectList extends React.Component {
     const projectLis = projects.map((project) => {
       // TODO: make a Route for projects
       return (
-        <Link to={`/projects/${project.id}`}>
+        <Link to={`/projects/${project.id}`} key={ project.id }>
           <li className="dash-sidebar__projects-list-item" key={ project.id }
             onClick={ () => this.handleClick(project) }>
             { project.name }

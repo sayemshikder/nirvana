@@ -18,7 +18,7 @@ class TaskIndexItem extends React.Component {
     const { id, name } = nextProps.task;
     this.setState({
       id,
-      name
+      name: name || ''
     });
   }
 
@@ -37,7 +37,6 @@ class TaskIndexItem extends React.Component {
 
   render() {
     const { task } = this.props;
-    const { name } = this.state;
 
     let monthDate;
     const today = new Date();
@@ -63,7 +62,7 @@ class TaskIndexItem extends React.Component {
           <input className="task-index-input"
             name="name"
             onChange={ this.handleChange }
-            value={ name } />
+            value={ this.state.name } />
         </div>
         <div className={`task-index__task-due-date ${task.dueDate && today.getTime() > fullDate.getTime() ? 'past-due' : ''}`}>
           { monthDate }

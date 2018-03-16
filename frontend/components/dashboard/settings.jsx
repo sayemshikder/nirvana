@@ -41,8 +41,8 @@ class SettingsModal extends React.Component {
     const { name, avatarUrl, logout, teams, currentTeam } = this.props;
     const teamList = teams.map((team) => {
       return (
-        <Link to={`/teams/${team.id}`}>
-          <li key={ team.id } onClick={ () => this.handleTeamClick(team.id)} className="dash-nav__settings-dropdown-item">
+        <Link to={`/teams/${team.id}`} key={ team.id }>
+          <li onClick={ () => this.handleTeamClick(team.id)} className="dash-nav__settings-dropdown-item">
             { team.name }
           </li>
         </Link>

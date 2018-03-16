@@ -1,17 +1,20 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
+import Select from 'react-select';
+// import 'react-select/dist/react-select.css';
 
 class TaskDetail extends React.Component {
   constructor(props) {
     super(props);
 
     if (props.task) {
-      const { id, name, description } = props.task;
+      const { id, name, description, assigneeId } = props.task;
 
       this.state = {
         id,
         name: name || '',
-        description: description || ''
+        description: description || '',
+        assignee_id: assigneeId || null,
       };
     }
 
@@ -20,14 +23,16 @@ class TaskDetail extends React.Component {
     this.handleChangeSync = this.handleChangeSync.bind(this);
     this.handleBlur = this.handleBlur.bind(this);
     this.handleProjectClick = this.handleProjectClick.bind(this);
+    this.handleAssigneeSelectOnChange = this.handleAssigneeSelectOnChange.bind(this);
   }
 
   componentWillReceiveProps(newProps) {
-    const { id, name, description } = newProps.task;
+    const { id, name, description, assigneeId } = newProps.task;
     this.setState({
       id,
       name,
-      description
+      description,
+      assignee_id: assigneeId
     });
   }
 
@@ -98,8 +103,18 @@ class TaskDetail extends React.Component {
     );
   }
 
+  handleAssigneeSelectOnChange(selectedObj) {
+    let value = null;
+    if (selectedObj) {
+      value = selectedObj.value;
+    }
+    this.setState({
+      assignee_id: value
+    }, this.updateTask);
+  }
+
   render () {
-    const { task, assignee, project, creator } = this.props;
+    const { task, assignee, project, creator, teamMembers } = this.props;
     if (!task) {
       return <Redirect to="/dashboard" />;
     }
@@ -119,10 +134,23 @@ class TaskDetail extends React.Component {
       }
     }
 
+    const assigneeSelectData = teamMembers.map((member) => {
+      return { value: member.id, label: member.name };
+    });
+    assigneeSelectData.push({ value: null, label: 'Unassigned' });
+
+    // <div className="task-detail__header-assignee">{ assignee ? assignee.name : 'Unassigned'}</div>
     return (
       <div className="task-detail">
         <div className="task-detail__header">
-          <div className="task-detail__header-assignee">{ assignee ? assignee.name : 'Unassigned'}</div>
+          <Select
+            name="assignee_id"
+            value={ this.state.assignee_id }
+            onChange={ this.handleAssigneeSelectOnChange }
+            options={ assigneeSelectData }
+            className="task_detail__select-assignee"
+            placeholder="Unassigned"
+          />
           <div className="task-detail__header-date">{ monthDate }</div>
         </div>
         <div >

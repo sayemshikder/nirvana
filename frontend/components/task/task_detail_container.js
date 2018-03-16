@@ -7,6 +7,7 @@ import { updateTask, requestTask } from '../../actions/task_actions.js';
 import { requestProject } from '../../actions/project_actions.js';
 import { requestTasksByProjectId } from '../../actions/task_actions.js';
 import { requestUser } from '../../actions/user_actions.js';
+import { selectTeamMembers } from '../../reducers/selectors.js';
 
 const mapStateToProps = (state, ownProps) => {
   if (!state.entities.tasks.tasks) {
@@ -17,7 +18,7 @@ const mapStateToProps = (state, ownProps) => {
 
   return {
     // task: ownProps.task,
-    entities: state.entities,
+    teamMembers: selectTeamMembers(state),
     task,
     creator: state.entities.users.teamMembers[task.creatorId],
     assignee: state.entities.users.teamMembers[task.assigneeId],

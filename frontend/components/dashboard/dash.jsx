@@ -78,8 +78,8 @@ class Dashboard extends React.Component {
 
     const profiles = teamMembers.map((user) => {
       return (
-        <Link to={`/users/${user.id}`}>
-          <li className="profile" key={user.id} >
+        <Link to={`/users/${user.id}`} key={ user.id }>
+          <li className="profile">
             <ProfileIconContainer user={user} />
           </li>
         </Link>
