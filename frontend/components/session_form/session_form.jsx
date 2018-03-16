@@ -55,7 +55,7 @@ class SessionForm extends React.Component {
   demoLogin() {
     if (this.props.location.pathname === '/demo') {
       const guest = {
-        email: 'maximus@nirvana.xyz',
+        email: 'demo@nirvana.xyz',
         password: '$#J2E*&PLGtEXupaI*x##g^GdWiJ*v'
       };
 
