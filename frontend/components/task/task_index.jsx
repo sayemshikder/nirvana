@@ -37,16 +37,18 @@ class TaskIndex extends React.Component {
       creator_id: this.props.currentUser.id,
       project_id: this.props.currentProject.id
     });
-    $('.task-index__list').animate({scrollTop: $(document).height()}, 'slow');
+    $('.task-index__list').animate({scrollTop: $('.task-index__list-section').height()}, 'slow');
   }
 
+  // handleClick={ () => requestTask(task.id) } />
   render () {
     const { tasks, requestTask } = this.props;
     const taskItems = tasks.map((task) => (
-      <TaskIndexItemContainer
-        task={ task }
-        key={ task.id }
-        handleClick={ () => requestTask(task.id) } />
+      <Link to={`/tasks/${task.id}`} key={task.id}>
+        <TaskIndexItemContainer
+          task={ task }
+          key={ task.id } />
+      </Link>
     ));
 
     // goes after task-index__list-section

@@ -1,12 +1,11 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Route } from 'react-router-dom';
+import { isEmpty } from 'lodash';
 import ProfileIconContainer from '../user/profile_icon_container';
 import TaskIndexContainer from '../task/task_index_container';
 import TaskDetailContainer from '../task/task_detail_container';
 import SettingsModal from './settings_container';
 import ProjectListContainer from './../project/project_list_container.js';
-import { isEmpty } from 'lodash';
-
 class Dashboard extends React.Component {
   constructor(props) {
     super(props);
@@ -47,15 +46,15 @@ class Dashboard extends React.Component {
     // }
   }
 
-  renderTaskDetail() {
-    const { currentTask } = this.props;
-
-    if (!isEmpty(currentTask)) {
-      return (
-        <TaskDetailContainer task={ currentTask } />
-      );
-    }
-  }
+  // renderTaskDetail() {
+  //   const { currentTask } = this.props;
+  //
+  //   if (!isEmpty(currentTask)) {
+  //     return (
+  //       <TaskDetailContainer task={ currentTask } />
+  //     );
+  //   }
+  // }
 
   render() {
     // TODO: refactor this eyesore into SettingsContainer
@@ -79,9 +78,11 @@ class Dashboard extends React.Component {
 
     const profiles = teamMembers.map((user) => {
       return (
-        <li className="profile" key={user.id} >
-          <ProfileIconContainer user={user} />
-        </li>
+        <Link to={`/users/${user.id}`}>
+          <li className="profile" key={user.id} >
+            <ProfileIconContainer user={user} />
+          </li>
+        </Link>
       );
     });
 
@@ -95,6 +96,7 @@ class Dashboard extends React.Component {
           <ul className="dash-sidebar__member-avatars">
             { profiles }
           </ul>
+
 
           <ProjectListContainer
             projects={ projects }
@@ -148,8 +150,9 @@ class Dashboard extends React.Component {
 
           <div className="dash-task-content">
             <TaskIndexContainer />
-            { this.renderTaskDetail() }
+            <Route path="/tasks/:taskId" component={ TaskDetailContainer } />
           </div>
+
         </div>
       </div>
     );

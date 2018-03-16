@@ -5,17 +5,24 @@ class TaskIndexItem extends React.Component {
   constructor(props) {
     super(props);
 
-    const { id, name, description } = props.task;
+    const { id, name } = props.task;
     this.state = {
       id,
       name: name || '',
-      description: description || '',
     };
 
     this.handleChange = this.handleChange.bind(this);
   }
 
-  // TODO: make this more efficient, 2 controlled inputs 
+  componentWillReceiveProps(nextProps) {
+    const { id, name } = nextProps.task;
+    this.setState({
+      id,
+      name
+    });
+  }
+
+  // TODO: make this more efficient, 2 controlled inputs
   handleChange(e) {
     const field = e.target.name;
     const value = e.target.value;

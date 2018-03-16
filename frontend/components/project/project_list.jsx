@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 class ProjectList extends React.Component {
   constructor() {
@@ -19,11 +20,14 @@ class ProjectList extends React.Component {
   render () {
     const { projects } = this.props;
     const projectLis = projects.map((project) => {
+      // TODO: make a Route for projects
       return (
-        <li className="dash-sidebar__projects-list-item" key={ project.id }
-          onClick={ () => this.handleClick(project) }>
-          { project.name }
-        </li>
+        <Link to={`/projects/${project.id}`}>
+          <li className="dash-sidebar__projects-list-item" key={ project.id }
+            onClick={ () => this.handleClick(project) }>
+            { project.name }
+          </li>
+        </Link>
       );
     });
 

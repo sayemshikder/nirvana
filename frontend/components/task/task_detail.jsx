@@ -1,19 +1,34 @@
 import React from 'react';
+import { Redirect } from 'react-router-dom';
 
 class TaskDetail extends React.Component {
   constructor(props) {
     super(props);
-    const { id, name, description } = props.task;
-    this.state = {
-      id,
-      name,
-      description
-    };
+
+    if (props.task) {
+      const { id, name, description } = props.task;
+
+      this.state = {
+        id,
+        name: name || '',
+        description: description || ''
+      };
+    }
+
     this.renderHistory = this.renderHistory.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleChangeSync = this.handleChangeSync.bind(this);
     this.handleBlur = this.handleBlur.bind(this);
     this.handleProjectClick = this.handleProjectClick.bind(this);
+  }
+
+  componentWillReceiveProps(newProps) {
+    const { id, name, description } = newProps.task;
+    this.setState({
+      id,
+      name,
+      description
+    });
   }
 
   handleChange(e) {
@@ -85,9 +100,8 @@ class TaskDetail extends React.Component {
 
   render () {
     const { task, assignee, project, creator } = this.props;
-
     if (!task) {
-      return null;
+      return <Redirect to="/dashboard" />;
     }
 
     const fullDate = new Date(task.dueDate);
@@ -119,7 +133,7 @@ class TaskDetail extends React.Component {
                 <textarea className="task-detail-textarea"
                   placeholder="Write a task name"
                   name="name"
-                  value={ task.name }
+                  value={ this.state.name || '' }
                   onChange={ this.handleChangeSync } />
               </li>
               <li className="task-detail__list-item task-detail__list-task-description">
@@ -127,7 +141,7 @@ class TaskDetail extends React.Component {
                   className="task-detail-textarea"
                   placeholder="Description"
                   name="description"
-                  value={ task.description }
+                  value={ this.state.description || '' }
                   onChange={ this.handleChange }
                   onBlur={ this.handleBlur } />
               </li>
