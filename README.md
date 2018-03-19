@@ -8,6 +8,8 @@
 
 <h4 align="center">An Asana clone built with React, Redux, and Ruby on Rails.</h4>
 
+![screenshot](https://i.imgur.com/LJHGMgZ.png)
+
 ## Key Features
 [//]: # (Make changes. See changes.)
 * Live Updating 
@@ -18,3 +20,8 @@
   - Add projects to your team and view tasks by project
 * Task Management
   - Assign team members to tasks and set due dates.
+* User Profiles
+  - View and update your user profile information.
+ 
+ replace this with gif
+ <img src="https://i.imgur.com/P1S0JJW.png" alt="screenshot of user profile" width="200">
