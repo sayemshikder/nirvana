@@ -20,6 +20,10 @@
   margin: 0 15px;
 }
 
+.dash-nav__item-inbox {
+  visibility: hidden;
+}
+
 .dash-nav--left {
   display: flex;
   align-items: center;
@@ -59,6 +63,8 @@
 
   outline-style:none;
   box-shadow:none;
+
+  visibility: hidden;
 }
 
 .dash-search:focus {

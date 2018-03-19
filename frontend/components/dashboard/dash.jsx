@@ -108,7 +108,7 @@ class Dashboard extends React.Component {
           <ul className="dash-nav">
             <div className="dash-nav--left">
               <li className="dash-nav__item dash-nav__item--selected">My Tasks</li>
-              <li className="dash-nav__item">Inbox</li>
+              <li className="dash-nav__item dash-nav__item-inbox">Inbox</li>
             </div>
 
             <div className="dash-nav--center">

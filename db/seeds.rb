@@ -22,7 +22,10 @@ demo_user = User.create(
   dept: "Demo Department",
   email: "demo@nirvana.xyz",
   password: "$#J2E*&PLGtEXupaI*x##g^GdWiJ*v",
-  about_me: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+  about_me: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do"\
+    "eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad"\
+    "minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip"\
+    "ea commodo consequat."
 )
 
 demo_team = Team.create(name: 'Demo User\'s Team', leader_id: demo_user.id)
@@ -34,8 +37,8 @@ TeamMembership.create(team_id: demo_team.id, user_id: demo_user.id)
 
   User.create(
     name: faker_user[:info][:name] + " u#{i + 2}",
-    role: Faker::Lovecraft.tome,
-    dept: Faker::Lovecraft.location,
+    role: Faker::Company.profession.titleize,
+    dept: Faker::Commerce.department,
     email: email,
     password: faker_user[:credentials][:token],
     about_me: Faker::Lovecraft.sentence,
@@ -44,7 +47,7 @@ end
 
 (MAX_TEAMS - 1).times do |i|
   Team.create(
-    name: Faker::Pokemon.move + " t#{i + 2}",
+    name: Faker::Company.name + " t#{i + 2}",
     leader_id: rand(1..MAX_USERS))
 end
 
@@ -66,7 +69,7 @@ User.all.each do |user|
 end
 
 MAX_PROJECTS.times do |i|
-  Project.create(name: Faker::OnePiece.location + " p#{i + 1}",
+  Project.create(name: Faker::Commerce.product_name + " p#{i + 1}",
                  description: Faker::Company.catch_phrase,
                  team_id: Team.all.sample.id
                 )
