@@ -35,8 +35,9 @@ TeamMembership.create(team_id: demo_team.id, user_id: demo_user.id)
   faker_user = Faker::Omniauth.google
   email = faker_user[:info][:email]
 
+  # name: faker_user[:info][:name] + " u#{i + 2}",
   User.create(
-    name: faker_user[:info][:name] + " u#{i + 2}",
+    name: faker_user[:info][:name],
     role: Faker::Company.profession.titleize,
     dept: Faker::Commerce.department,
     email: email,
@@ -46,8 +47,9 @@ TeamMembership.create(team_id: demo_team.id, user_id: demo_user.id)
 end
 
 (MAX_TEAMS - 1).times do |i|
+  # name: Faker::Company.name + " t#{i + 2}",
   Team.create(
-    name: Faker::Company.name + " t#{i + 2}",
+    name: Faker::Company.name,
     leader_id: rand(1..MAX_USERS))
 end
 
@@ -69,7 +71,8 @@ User.all.each do |user|
 end
 
 MAX_PROJECTS.times do |i|
-  Project.create(name: Faker::Commerce.product_name + " p#{i + 1}",
+  # Project.create(name: Faker::Commerce.product_name + " p#{i + 1}",
+  Project.create(name: Faker::Commerce.product_name,
                  description: Faker::Company.catch_phrase,
                  team_id: Team.all.sample.id
                 )
@@ -80,7 +83,8 @@ Team.all.each do |team|
   MAX_TASKS_PER_TEAM.times do
     random_proj_id = team.projects.sample.id
     now = Date.today
-    Task.create!(name: Faker::Company.bs.capitalize + " p#{random_proj_id} t#{task_count + 1}",
+    # Task.create!(name: Faker::Company.bs.capitalize + " p#{random_proj_id} t#{task_count + 1}",
+    Task.create!(name: Faker::Company.bs.capitalize,
                  description: Faker::Hipster.sentence,
                  due_date: Faker::Time.between(Date.new(now.year, 1, 1), Date.new(now.year + 1, 12, 31)),
                  creator_id: team.members.sample.id,
