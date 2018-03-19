@@ -6,6 +6,8 @@
   <br>
 </h1>
 
+<h4 align="center">An Asana clone built with React, Redux, and Ruby on Rails.</h4>
+
 ## Key Features
 [//]: # (Make changes. See changes.)
 * Live Updating 
