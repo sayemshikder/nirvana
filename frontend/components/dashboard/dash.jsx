@@ -14,14 +14,26 @@ class Dashboard extends React.Component {
   }
 
   componentDidMount() {
-    this.props.requestAllTeams().then(() => {
-      const curTeamId = this.props.currentTeam.id;
-      this.props.requestTeam(curTeamId);
-      this.props.requestProjectsByTeamId(curTeamId);
-      this.props.requestTeamMembers(curTeamId);
-      this.props.requestTasksByTeamId(curTeamId);
+    const {
+      requestAllTeams,
+      requestTeam,
+      requestProjectsByTeamId,
+      requestTeamMembers,
+      requestTasksByUserAndTeamIds,
+      requestUser,
+      loggedInUser,
+      currentTeamId
+    } = this.props;
+
+    requestAllTeams().then(() => {
+      debugger
+      requestTeam(currentTeamId);
+      requestProjectsByTeamId(currentTeamId);
+      requestTeamMembers(currentTeamId);
+      // requestTasksByTeamId(currentTeamId);
+      requestTasksByUserAndTeamIds(loggedInUser.id, currentTeamId);
     });
-    this.props.requestUser(this.props.currentUser.id);
+    requestUser(this.props.currentUser.id);
   }
 
   logout() {
@@ -35,7 +47,8 @@ class Dashboard extends React.Component {
     if (currentUser.id !== loggedInUser.id) {
       prefix = `${currentUser.name.split(' ')[0]}'s`;
     }
-    return `${ prefix } Tasks in ${ currentTeam.name }`;
+    debugger
+    return `${ prefix } Tasks in ${ currentTeam ? currentTeam.name : 'Loading...' }`;
   }
 
   componentWillReceiveProps(newProps) {

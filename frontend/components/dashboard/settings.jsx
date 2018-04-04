@@ -24,13 +24,13 @@ class SettingsModal extends React.Component {
   }
 
   handleTeamClick(teamId) {
-    this.props.requestAllTeams().then(() => {
+    // this.props.requestAllTeams().then(() => {
       this.props.requestTeam(teamId);
       this.props.requestProjectsByTeamId(teamId);
-    });
+    // });
     this.props.requestTeamMembers(teamId);
     this.props.requestUser(this.props.currentUser.id);
-    this.props.requestTasksByUserId(this.props.currentUser.id);
+    // this.props.requestTasksByUserId(this.props.currentUser.id);
 
     // TODO: do this w/ react
     // $('.dash-sub-nav__header-team').text('All Tasks in ' + this.props.currentTeam.name);

@@ -25,6 +25,7 @@ const mapStateToProps = (state) => {
     currentUser: selectCurrentUser(state) || state.session.loggedInUser,
     currentTeam: selectCurrentTeam(state),
     currentProject: selectCurrentProject(state),
+    loggedInUser: state.session.loggedInUser
   };
 };
 

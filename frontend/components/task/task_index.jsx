@@ -20,15 +20,21 @@ class TaskIndex extends React.Component {
       requestTasksByUserId,
       requestTasksByProjectId,
       requestTasksByTeamId,
-      requestTasksByUserAndTeamIds
+      requestTasksByUserAndTeamIds,
+      loggedInUser
     } = this.props;
 
+    // Clicked user avatar
     if (currentUser && (currentUser.id !== nextProps.currentUser.id)) {
       requestTasksByUserAndTeamIds(nextProps.currentUser.id, currentTeam.id);
-    } else if (currentProject && (currentProject.id !== nextProps.currentProject.id)) {
-      requestTasksByProjectId(nextProps.currentProject.id);
+    // Changed teams via settings dropdown
     } else if (currentTeam && (currentTeam.id !== nextProps.currentTeam.id)) {
-      requestTasksByTeamId(nextProps.currentTeam.id);
+      requestTasksByUserAndTeamIds(loggedInUser.id, nextProps.currentTeam.id);
+      // requestTasksByTeamId(nextProps.currentTeam.id);
+    } else if (currentProject && (currentProject.id !== nextProps.currentProject.id)) {
+      // debugger
+      // requestTasksByProjectId(nextProps.currentProject.id);
+      // requestTasksByUserAndTeamIds(loggedInUser.id, currentTeam.id);
     }
   }
 

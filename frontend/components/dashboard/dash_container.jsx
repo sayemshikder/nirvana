@@ -5,8 +5,14 @@ import { logout } from '../../actions/session_actions';
 import { requestTeamMembers, requestUser } from '../../actions/user_actions';
 import { requestProjectsByTeamId } from '../../actions/project_actions';
 import { requestTeam, requestAllTeams} from '../../actions/team_actions';
-import { requestTask, requestTasksByUserId, requestTasksByTeamId } from '../../actions/task_actions';
-import { selectProjectMembers,
+import {
+  requestTask,
+  requestTasksByUserId,
+  requestTasksByTeamId,
+  requestTasksByUserAndTeamIds
+} from '../../actions/task_actions';
+import {
+  selectProjectMembers,
   selectAllTeams,
   selectTeamMembers,
   selectCurrentTeam,
@@ -25,13 +31,15 @@ const mapStateToProps = (state) => {
   const projects = selectAllProjects(state);
   const tasks = selectAllTasks(state);
   const currentUser = selectCurrentUser(state) || state.session.loggedInUser;
+  const currentTeam = selectCurrentTeam(state);
   const loggedInUser = selectLoggedInUser(state);
   return {
     teams,
     projects,
     tasks,
     currentUser,
-    currentTeam: selectCurrentTeam(state) || loggedInUser.teamIds[0],
+    currentTeam,
+    currentTeamId: currentTeam ? currentTeam.id : loggedInUser.teamIds[0],
     currentProject: selectCurrentProject(state),
     currentTask: selectCurrentTask(state),
     loggedInUser,
@@ -48,6 +56,7 @@ const mapDispatchToProps = (dispatch) => {
     requestUser: (userId) => dispatch(requestUser(userId)),
     requestTask: (taskId) => dispatch(requestUser(taskId)),
     requestTasksByUserId: (userId) => dispatch(requestTasksByUserId(userId)),
+    requestTasksByUserAndTeamIds: (userId, teamId) => dispatch(requestTasksByUserAndTeamIds(userId, teamId)),
     requestAllTeams: () => dispatch(requestAllTeams()),
     requestProjectsByTeamId: (teamId) => dispatch(requestProjectsByTeamId(teamId)),
     requestTasksByTeamId: (teamId) => dispatch(requestTasksByTeamId(teamId)),
