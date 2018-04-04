@@ -32,6 +32,16 @@ class User < ApplicationRecord
            through: :teams,
            source: :members
 
+  has_attached_file :avatar, styles: {
+    big: "180x180>",
+    small: "30x30#"
+  }
+
+  validates_attachment_content_type(
+    :avatar,
+    content_type: /\Aimage\/.*\Z/
+  )
+
   AVATAR_THEMES = ["sugarsweets", "heatwave", "daisygarden", "seascape",
                    "summerwarmth", "bythepool", "duskfalling", "frogideas",
                    "berrypie"].freeze
@@ -66,9 +76,11 @@ class User < ApplicationRecord
   end
 
   def set_empty_avatar_url_to_random_value
-    if self.avatar_url.nil? || self.avatar_url.empty?
-      self.avatar_url = "http://tinygraphs.com/isogrids/" +
-          "#{self.email}?theme=#{AVATAR_THEMES.sample}&numcolors=4&size=180&fmt=svg"
+    if self.avatar.url == "/avatars/original/missing.png"
+      self.avatar = URI.parse(
+        "http://tinygraphs.com/isogrids/" +
+        "#{self.email}?theme=#{AVATAR_THEMES.sample}&numcolors=4&size=180&fmt=svg"
+      )
     end
   end
 end

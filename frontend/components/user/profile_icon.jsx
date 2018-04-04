@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 class Profile extends React.Component {
   render() {
     const { user, showProfileDetailsModal, closeModal } = this.props;
-    
+
     return (
       <div onClick={ () => this.props.requestUser(user.id) }>
         <img onMouseEnter={ () => showProfileDetailsModal(user.id) }

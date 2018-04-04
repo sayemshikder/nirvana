@@ -26,7 +26,6 @@ class Dashboard extends React.Component {
     } = this.props;
 
     requestAllTeams().then(() => {
-      debugger
       requestTeam(currentTeamId);
       requestProjectsByTeamId(currentTeamId);
       requestTeamMembers(currentTeamId);
@@ -47,7 +46,7 @@ class Dashboard extends React.Component {
     if (currentUser.id !== loggedInUser.id) {
       prefix = `${currentUser.name.split(' ')[0]}'s`;
     }
-    debugger
+
     return `${ prefix } Tasks in ${ currentTeam ? currentTeam.name : 'Loading...' }`;
   }
 
