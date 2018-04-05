@@ -172,3 +172,24 @@
 .task-detail__list-history-item--creator {
   font-weight: 500;
 }
+
+.react-datepicker__input-container input {
+  border: 1px solid transparent;
+  outline: none;
+  box-sizing: border-box;
+  height: 36px;
+  width: 70px;
+
+  &:hover {
+    color: #000;
+    // border-radius: 1px;
+    border-bottom: 1px solid #F0F0F0;
+    outline-offset: 15px;
+    // background-color: #F6F8F9;
+  }
+}
+
+.react-datepicker__triangle {
+  left: auto !important;
+  right: 25px;
+}

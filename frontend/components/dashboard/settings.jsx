@@ -68,7 +68,8 @@ class SettingsModal extends React.Component {
           <ul>
             <div onClick={ this.handleCloseModal }>
               { teamList }
-              <li className="dash-nav__settings-dropdown-item settings-logout" onClick={ logout }>Log Out</li>
+              <li className="dash-nav__settings-dropdown-item settings--separated">My Profile Settings</li>
+              <li className="dash-nav__settings-dropdown-item" onClick={ logout }>Log Out</li>
             </div>
           </ul>
         </Modal>

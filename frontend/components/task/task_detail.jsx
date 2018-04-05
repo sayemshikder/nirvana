@@ -1,20 +1,23 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
 import Select from 'react-select';
-// import 'react-select/dist/react-select.css';
+import DatePicker from 'react-datepicker';
+import moment from 'moment';
+import 'react-datepicker/dist/react-datepicker-cssmodules.css';
 
 class TaskDetail extends React.Component {
   constructor(props) {
     super(props);
 
     if (props.task) {
-      const { id, name, description, assigneeId } = props.task;
+      const { id, name, description, assigneeId, dueDate } = props.task;
 
       this.state = {
         id,
         name: name || '',
         description: description || '',
         assignee_id: assigneeId || null,
+        due_date: dueDate || ''
       };
     }
 
@@ -24,16 +27,18 @@ class TaskDetail extends React.Component {
     this.handleBlur = this.handleBlur.bind(this);
     this.handleProjectClick = this.handleProjectClick.bind(this);
     this.handleAssigneeSelectOnChange = this.handleAssigneeSelectOnChange.bind(this);
+    this.handleDueDateOnChange = this.handleDueDateOnChange.bind(this);
   }
 
   componentWillReceiveProps(newProps) {
-    const { id, name, description, assigneeId, currentProjectName } = newProps.task;
+    const { id, name, description, assigneeId, currentProjectName, dueDate } = newProps.task;
     this.setState({
       id,
       name,
       description,
       assignee_id: assigneeId,
-      currentProjectName
+      currentProjectName,
+      due_date: dueDate
     });
   }
 
@@ -61,12 +66,10 @@ class TaskDetail extends React.Component {
     this.updateTask();
   }
 
-  // TODO: buggy
   handleProjectClick(e) {
     const { task } = this.props;
     this.props.requestProject(task.projectId);
     this.props.requestTasksByProjectId(task.projectId);
-    // this.props.requestUser(this.props.currentUser.id);
     // TODO: do this w/ redux
     $('.dash-sub-nav__header-team').text(this.props.project.name);
     // transparent 1x1 pixel
@@ -114,6 +117,14 @@ class TaskDetail extends React.Component {
     }, this.updateTask);
   }
 
+  handleDueDateOnChange(selectedDate) {
+    let due_date = null;
+    if (selectedDate) {
+      due_date = selectedDate;
+    }
+    this.setState({ due_date }, this.updateTask);
+  }
+
   render () {
     const { task, assignee, project, creator, teamMembers } = this.props;
     if (!task) {
@@ -140,7 +151,6 @@ class TaskDetail extends React.Component {
     });
     assigneeSelectData.push({ value: null, label: 'Unassigned' });
 
-    // <div className="task-detail__header-assignee">{ assignee ? assignee.name : 'Unassigned'}</div>
     return (
       <div className="task-detail">
         <div className="task-detail__header">
@@ -152,7 +162,13 @@ class TaskDetail extends React.Component {
             className="task_detail__select-assignee"
             placeholder="Unassigned"
           />
-          <div className="task-detail__header-date">{ monthDate }</div>
+
+          <DatePicker
+            selected={ this.state.due_date ? moment(this.state.due_date) : null }
+            onChange={ this.handleDueDateOnChange }
+            popperPlacement="top-end"
+            placeholderText="Due Date"
+          />
         </div>
         <div >
           <ul className="task-detail__list">
