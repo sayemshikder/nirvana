@@ -27,12 +27,13 @@ class TaskDetail extends React.Component {
   }
 
   componentWillReceiveProps(newProps) {
-    const { id, name, description, assigneeId } = newProps.task;
+    const { id, name, description, assigneeId, currentProjectName } = newProps.task;
     this.setState({
       id,
       name,
       description,
-      assignee_id: assigneeId
+      assignee_id: assigneeId,
+      currentProjectName
     });
   }
 
@@ -65,9 +66,9 @@ class TaskDetail extends React.Component {
     const { task } = this.props;
     this.props.requestProject(task.projectId);
     this.props.requestTasksByProjectId(task.projectId);
-    this.props.requestUser(this.props.currentUser.id);
+    // this.props.requestUser(this.props.currentUser.id);
     // TODO: do this w/ redux
-    $('.dash-sub-nav__header-team').text(this.props.currentProject.name);
+    $('.dash-sub-nav__header-team').text(this.props.project.name);
     // transparent 1x1 pixel
     $('.dash-sub-nav__header-avatar').attr('src', 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==');
   }
